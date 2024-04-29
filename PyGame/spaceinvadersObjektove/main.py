@@ -56,7 +56,7 @@ MOOVING = pygame.USEREVENT + 2   # vlastní event
 pygame.time.set_timer(MOOVING, 50) # automaticky pohyb nepratel kazdou vterinu
 running = True
 while running: 
-	clock.tick(15)  # FPS
+	clock.tick(30)  # FPS
 	screen.fill((150, 150, 0))
 	pygame.draw.rect(screen,(0,0,0,128),[0,0,550,70])
 	for event in pygame.event.get(): 
@@ -78,11 +78,14 @@ while running:
 			print("Game Over")
 	if pygame.sprite.spritecollide(player, enemies, True,pygame.sprite.collide_mask):
 		print("kolize")
+		pygame.time.wait(100)
 		player.explosion(screen)
+		
 	player.draw(screen)
 	enemies.draw(screen)
 	text = font.render(f'Score: {score}', True, (255,0,0),(0,0,0))
 	screen.blit(text, textRect)
 	screen.blit(text2, textRect2)
-	pygame.display.update()
+	pygame.display.flip()
+	pygame.time.delay(50)
 

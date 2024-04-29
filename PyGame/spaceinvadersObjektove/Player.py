@@ -7,6 +7,10 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(x, y)) 
         self.screenWidth = width
         self.screenHeight = height
+        self.explosion_frames = [pygame.image.load(f"spaceinvadersObjektove/obr/{i}exploze.png") for i in range(6)]
+        self.explosion_index = 0
+        self.explosion_duration = 100  # Time between each frame in milliseconds
+        self.last_explosion_update = pygame.time.get_ticks()
 
     def move(self,direction):
         if direction == "left":
@@ -19,8 +23,16 @@ class Player(pygame.sprite.Sprite):
     def draw(self,screen):
         screen.blit(self.image, self.rect) 
 
-    def explosion(self,screen):
-        exploze = pygame.image.load("spaceinvadersObjektove/obr/0exploze.png")
-        exploze = pygame.transform.scale(self.image,(40,40))
-        screen.blit(exploze,self.rect)
-        pygame.time.delay(5000)
+    def explosion(self, screen):
+        for i in range(6):
+            pygame.time.wait(100)
+            current_time = pygame.time.get_ticks()
+            if current_time - self.last_explosion_update > self.explosion_duration:
+                self.last_explosion_update = current_time
+                if self.explosion_index < len(self.explosion_frames) - 1:
+                    self.explosion_index += 1
+            exploze = self.explosion_frames[self.explosion_index]
+            exploze = pygame.transform.scale(exploze, (80, 80))
+            screen.blit(exploze, self.rect)
+            pygame.display.flip()
+            pygame.time.wait(50)

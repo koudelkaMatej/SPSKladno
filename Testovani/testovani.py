@@ -1,16 +1,24 @@
+# Definice funkce
+def sečti(x, y):
+    return x + y
+
+# Testování pomocí unittest/ načtení knihovny
 import unittest
-def soucty_prvku(list1, list2):
-    if len(list1) != len(list2):
-        raise ValueError("Seznamy musí mít stejnou délku!")
-    return [a + b for a, b in zip(list1, list2)]
 
-class TestSouctyPrvku(unittest.TestCase):
-    def test_spravne_scitani(self):
-        self.assertEqual(soucty_prvku([1, 2, 3], [4, 5, 6]), [5, 7, 9])
+class TestSečtiFunkce(unittest.TestCase):
+    def test_sečti(self):
+        # Test: sečti(2, 3) má vrátit 5
+        self.assertEqual(sečti(2, 3), 5)
 
-    def test_nerovna_delka(self):
-        with self.assertRaises(ValueError):
-            soucty_prvku([1, 2], [1, 2, 3])
+        # Test: sečti(-1, 1) má vrátit 0
+        self.assertEqual(sečti(-1, 1), 0)
 
+        # Test: sečti(0, 0) má vrátit 0
+        self.assertEqual(sečti(0, 0), 0)
+
+    def test_chyba(self):
+        self.assertEqual(sečti(2, 3), 5) # Test: sečti(2, 3) má vrátit 5, ale já chci 6(hodí chybu) Zároveň se pustí 2 testy
+
+# Spuštění testů
 if __name__ == '__main__':
     unittest.main()

@@ -1,20 +1,21 @@
-pozice = "obec"
-rychlost = 55
+# Definice funkce
+def sečti(x, y):
+    return x + y
 
-if rychlost > 50:
-    if pozice == "obec":
-        print("Pokuta")
-    if pozice == "mimo obec":
-        if rychlost > 90:
-            print("Pokuta")
-    if pozice == "dálnice":
-        if rychlost > 130:
-            print("Pokuta")
-else:
-    print("OK")
+# Testování pomocí unittest/ načtení knihovny
+import unittest
 
+class TestSečtiFunkce(unittest.TestCase):
+    def test_sečti(self):
+        # Test: sečti(2, 3) má vrátit 5
+        self.assertEqual(sečti(2, 3), 5)
 
-if 3 > 5 or 5 < 10:
-   
+        # Test: sečti(-1, 1) má vrátit 0
+        self.assertEqual(sečti(-1.0, 1.0), 0.0)
 
-   
+        # Test: sečti(0, 0) má vrátit 0
+        self.assertEqual(sečti(0, 0), 0)
+
+# Spuštění testů
+if __name__ == '__main__':
+    unittest.main()

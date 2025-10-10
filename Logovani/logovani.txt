@@ -1,0 +1,8 @@
+2025-10-10 09:15:21,362 - info_logger - INFO - Hráč Petr byl vytvořen.
+2025-10-10 09:15:21,364 - debug_logger - DEBUG - Vytvořen objekt Hrac(jmeno='Petr', skore=0)
+2025-10-10 09:15:21,365 - info_logger - INFO - Hráč Petr získal 5 bodů. Celkem má 5.
+2025-10-10 09:15:21,367 - debug_logger - DEBUG - Změna skóre: 0 -> 5
+2025-10-10 09:15:21,368 - info_logger - INFO - Hráč Petr získal 10 bodů. Celkem má 15.
+2025-10-10 09:15:21,369 - debug_logger - DEBUG - Změna skóre: 5 -> 15
+2025-10-10 09:15:21,371 - info_logger - INFO - Hráč Petr vyhrál!
+2025-10-10 09:15:21,372 - debug_logger - DEBUG - Kontrola výhry: skore=15, limit=10 => VYHRÁL

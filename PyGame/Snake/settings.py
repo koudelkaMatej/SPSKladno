@@ -1,0 +1,16 @@
+SCREEN_HEIGTH = 600
+SCREEN_WIDTH = 600
+FPS = 60
+CELL_SIZE = 20
+
+
+
+
+# Colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+GRAY = (128, 128, 128)

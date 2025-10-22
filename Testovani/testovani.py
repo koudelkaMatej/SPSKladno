@@ -1,42 +1,16 @@
-# Definice funkce
-<<<<<<< HEAD
-def sečti(x, y = 0):
-    return x + y
-# Testování pomocí unittest/ načtení knihovny
-import unittest
+import logging
+console_output = logging.StreamHandler()
+root_logger = logging.getLogger()
+# root_logger.addHandler(console_output)
+# root_logger.setLevel(logging.DEBUG)
+# příklad přidávání handleru na logger (zachycování zpráv loggeru)
 
-class TestSečtiFunkce(unittest.TestCase):
-    def test_sečti(self):
-        # Test: sečti(2, 3) má vrátit 5
-        self.assertEqual(sečti(2, 3), 5)
+x_logger = logging.getLogger('x')
 
-        # Test: sečti(-1, 1) má vrátit 0
-        self.assertEqual(sečti(-1, 1), 0)
+x_y_logger = logging.getLogger('x.y')
+x_z_logger = logging.getLogger('x.z')
 
-        # Test: sečti(0, 0) má vrátit 0
-        self.assertEqual(sečti(0, 0), 0)
-
-    def test_chyba(self):
-        self.assertEqual(sečti(2, 3), 6) # Test: sečti(2, 3) má vrátit 5, ale já chci 6(hodí chybu) Zároveň se pustí 2 testy
-=======
-def sečti(x, y):
-    return x + y
-
-# Testování pomocí unittest/ načtení knihovny
-import unittest
-
-class TestSečtiFunkce(unittest.TestCase):
-    def test_sečti(self):
-        # Test: sečti(2, 3) má vrátit 5
-        self.assertEqual(sečti(2, 3), 5)
-
-        # Test: sečti(-1, 1) má vrátit 0
-        self.assertEqual(sečti(-1.0, 1.0), 0.0)
-
-        # Test: sečti(0, 0) má vrátit 0
-        self.assertEqual(sečti(0, 0), 0)
->>>>>>> aa1dfaf9a70add6ac0675f5ecf26784820ecafa7
-
-# Spuštění testů
-if __name__ == '__main__':
-    unittest.main()
+root_logger.info('zpráva 1')
+x_logger.info('zpráva 2')
+x_y_logger.info('zpráva 3')
+x_z_logger.info('zpráva 4')

@@ -24,9 +24,11 @@ class Player(pygame.sprite.Sprite):
             self.x += direction_x * self.speed
             self.y += direction_y * self.speed
         else:
-            self.x = mouse_x
-            self.y = mouse_y    
+            self.x = direction_x + self.x
+            self.y = direction_y + self.y
+            self.rect.center = (self.x, self.y)
         self.rect.center = (self.x, self.y)
+        
 
 if __name__ == "__main__":
     import main

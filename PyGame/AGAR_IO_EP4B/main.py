@@ -3,6 +3,7 @@ from settings import *
 from Player import *
 from Blob import *
 from circle_overlap_percentage import *
+from overlap_percentage import *
 
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -35,8 +36,9 @@ while running:
     player_group.update(mouse_x, mouse_y)
 
     for blob in food_group:
-        overlap = circle_overlap_percentage(player.x, player.y, player.radius, blob.x, blob.y, blob.radius)
-        if overlap > 90:
+        overlap = circle_overlap_percentage(player.rect.centerx, player.rect.centery, player.radius, blob.rect.centerx, blob.rect.centery, blob.radius)
+        #overlap = overlap_percentage(player.rect.centerx, player.rect.centery, player.radius, blob.rect.centerx, blob.rect.centery, blob.radius)
+        if overlap > 70:
             if player.radius >= blob.radius+5:
                 player.radius += int(blob.radius * 0.2)
                 player.image = pygame.Surface((player.radius * 2, player.radius * 2), pygame.SRCALPHA)

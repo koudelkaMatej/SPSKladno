@@ -1,7 +1,7 @@
 import pygame
 from settings import *
-from Player import Player
 from AI_player import AI_player
+from Player import Player
 from Blob import Blob
 from circle_overlap_percentage import circle_overlap_percentage
 
@@ -13,10 +13,9 @@ player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, PLAYER_START_SIZE, player
 player_group = pygame.sprite.Group()
 player_group.add(player)
 blob_group = pygame.sprite.Group()
-
-ai1 = AI_player(100,100,30,player_colors.pop())
-ai2 = AI_player(500,500,40,player_colors.pop())
 ai_group = pygame.sprite.Group()
+ai1 = AI_player(100,100,30,player_colors.pop())
+ai2 = AI_player(200,200,30,player_colors.pop())
 ai_group.add(ai1)
 ai_group.add(ai2)
 
@@ -44,7 +43,6 @@ while running:
 
     ai_group.update(mouse_x, mouse_y)
     ai_group.draw(screen)
-
     for blob in blob_group:
         overlap = circle_overlap_percentage(player.x, player.y, player.radius, blob.x, blob.y, blob.radius)
         if overlap > 90:

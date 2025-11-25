@@ -22,14 +22,10 @@ class Player(pygame.sprite.Sprite):
             direction_x /= distance
             direction_y /= distance
             speed = 5
-            self.x += int(direction_x * speed)
-            self.y += int(direction_y * speed)
-        else:
-            self.x = mouse_x
-            self.y = mouse_y
-        self.image = pygame.Surface((self.radius * 2, self.radius * 2), pygame.SRCALPHA)
+            self.x += direction_x * speed
+            self.y += direction_y * speed
+        self.rect.center = (self.x, self.y)
         self.rect = self.image.get_rect(center=(self.x, self.y))
-        self.image.fill((0, 0, 0, 0))
         pygame.draw.circle(self.image, self.color, (self.radius, self.radius), self.radius)
 
 if __name__ == "__main__":

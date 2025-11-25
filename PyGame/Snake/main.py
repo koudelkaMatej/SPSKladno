@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from Apple import Apple
+from Snake import Snake
 pygame.init()
 pygame.font.init()
 
@@ -67,22 +68,44 @@ def settings_menu():
 
 
 ##############################
-
+apple_red_group = pygame.sprite.Group()
+apple_green_group = pygame.sprite.Group()
+snake_group = pygame.sprite.Group()
+apple_red_group.add(Apple(RED_APPLE_IMAGE_PATH))
 generate_green_food = pygame.USEREVENT + 1
-pygame.time.set_timer(generate_green_food, 10000)
-apple_group = pygame.sprite.Group()
+pygame.time.set_timer(generate_green_food, 15000)
+snake = Snake()
+snake_group.add(snake)
 
 def main_game_menu():
+    green_apple_elapsed_time = 0
     game_menu_running = True
+    
     while game_menu_running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_menu_running = False
             if event.type == generate_green_food:
-                apple_group.add(Apple(GREEN_APPLE_IMAGE_PATH))
-
+                apple_green_group.add(Apple(GREEN_APPLE_IMAGE_PATH))
+                green_apple_elapsed_time = pygame.time.get_ticks()
+        if green_apple_elapsed_time + 10000 < pygame.time.get_ticks():
+            apple_green_group.empty()
+        if len(apple_red_group) == 0:
+            apple_red_group.add(Apple(RED_APPLE_IMAGE_PATH))
+        
+        if pygame.mouse.get_pressed()[0]:
+            mouse_pos = pygame.mouse.get_pos()
+            for apple in apple_red_group:
+                if apple.rect.collidepoint(mouse_pos):
+                    apple_red_group.remove(apple)
+            for apple in apple_green_group:
+                if apple.rect.collidepoint(mouse_pos):
+                    apple_green_group.remove(apple)
         screen.fill(BLACK)
-        apple_group.draw(screen)
+        apple_red_group.draw(screen)
+        apple_green_group.draw(screen)
+        snake.draw(screen)
+        
         pygame.display.flip()
         clock.tick(FPS)
 

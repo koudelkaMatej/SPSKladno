@@ -36,3 +36,6 @@ GIRL_IDLE_PATH = 'Assets/ohen a voda/girl_still/{}.png'
 GIRL_RIGHT_PATH = 'Assets/ohen a voda/girl_right/{}.png'
 # 9 = switch tile
 
+
+if __name__ == "__main__":
+    import main

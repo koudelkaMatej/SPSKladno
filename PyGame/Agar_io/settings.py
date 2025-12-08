@@ -5,7 +5,7 @@ FPS = 60
 # player settings
 PLAYER_START_SIZE = 20
 BLOB_START_SIZE = 5
-
+PLAYER_SPEED = 5
 
 # Colors
 WHITE = (255, 255, 255)

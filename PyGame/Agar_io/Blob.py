@@ -5,7 +5,7 @@ import random
 class Blob(pygame.sprite.Sprite):
     def __init__(self):    
         super().__init__()  # Initialize the pygame.sprite.Sprite base class
-        self.x = random.randint(BLOB_START_SIZE, SCREEN_WIDTH- BLOB_START_SIZE)
+        self.x = random.randint(BLOB_START_SIZE, SCREEN_WIDTH - BLOB_START_SIZE)
         self.y = random.randint(BLOB_START_SIZE, SCREEN_HEIGHT - BLOB_START_SIZE)
         self.radius = BLOB_START_SIZE
         self.color = LIGHT_GREEN

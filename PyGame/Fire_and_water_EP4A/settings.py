@@ -2,15 +2,19 @@ SCREEN_HEIGHT = 1000
 SCREEN_WIDTH = 1000
 FPS = 60
 
+PLAYER_X_SIZE = 40
+PLAYER_Y_SIZE = 75
 TILE_SIZE = 50 # CSV je napocitane na 50px což je vlastně 1000/50 = 20 sloupců a řádků
 
 LEVEL_PATH = 'Assets/Levels/level{}.csv'  # {} je číslo levelu
 # number of tiles
 # 0 = empty tile
 # 1 = dirt tile
+
+
 DIRT_PATH = 'Assets/ohen a voda/dirt/dirt.png'
 # 2 = lava tile
-LAVA_PATH = 'Assets/ohen a voda/lava/{}.png'
+LAVA_PATH = 'Assets/ohen a voda/lava/{}.png'.format(1)
 # 12 = lava left tile
 # 21 = lava right tile
 LAVA_RIGHT_PATH = 'Assets/ohen a voda/lava_kraj/{}.png'

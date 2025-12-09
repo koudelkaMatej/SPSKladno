@@ -105,6 +105,7 @@ def main_game_menu():
         apple_red_group.draw(screen)
         apple_green_group.draw(screen)
         snake.draw(screen)
+        snake.update()
         
         pygame.display.flip()
         clock.tick(FPS)

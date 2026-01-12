@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nahrát TXT Soubor</title>
+</head>
+<body>
+    <h1>Nahrát TXT Soubor</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Vyber TXT soubor:</label>
+        <input type="file" name="file" accept=".txt" required> <!---multiple pro více souborů --->
+        <button type="submit">Odeslat</button>
+    </form>
+
+    {% if content %}
+        <h2>Obsah souboru:</h2>
+        <pre>{{ content }}</pre>  <!-- zobrazení obsahu souboru -->
+    {% endif %}
+</body>
+</html>

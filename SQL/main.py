@@ -1,6 +1,7 @@
 import mysql.connector
 from pripojeni import *
 
+<<<<<<< HEAD
 import mysql.connector
 mydb = mysql.connector.connect(
     host = HOST
@@ -158,4 +159,43 @@ myresult = mycursor.fetchall()
 for prijmeni, datum_narozeni, nazev, mesto in myresult:
     print(f"Hráč {prijmeni}, s datem narození {datum_narozeni} z týmu {nazev} v městě {mesto}")
 mycursor.close()
+=======
+mydb = mysql.connector.connect(
+    host = "dbs.spskladno.cz"
+    ,user = "rekne_ucitel"
+    ,password = "rekne_ucitel"
+    ,database = "zavisi_na_useru"
+)
+mycursor = mydb.cursor()
+
+mycursor.execute("""CREATE TABLE if not exits Automobil(
+    id int,
+    spz text,
+    pocet_sedadel int,
+    max_rychlost int,
+    nosnost int,
+    nutna_kvalifikace text,
+    datum_vyroby date
+)""")
+
+mydb.commit()
+
+# Zapíšeme do ni
+mycursor.execute("""INSERT INTO Automobil
+(id, spz, pocet_sedadel, max_rychlost, nosnost,  nutna_kvalifikace, datum_vyroby) VALUES
+(1, '1A1111', 4, 190, 3, 'B',  '2000-09-09'),
+(2, '2B2222', 2, 220, 2, 'B',  '2020-01-01');
+""")
+
+mydb.commit()
+
+try:
+  # TODO: Zde přijde váš kód ->
+  pass
+
+except mysql.connector.Error as chyba:
+    print("Příkaz byl zadán chybně:\n", chyba)
+
+mycursor.close()
+>>>>>>> afcb666 (asd)
 mydb.close()

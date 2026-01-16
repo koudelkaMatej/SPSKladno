@@ -129,6 +129,7 @@ env.bak/
 venv.bak/
 pripojeni.py
 
+
 # Spyder project settings
 .spyderproject
 .spyproject

@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
     
         {
             "name": "Python Debugger: Flask",
@@ -21,6 +22,15 @@
             ],
             "jinja": true,
             "autoStartBrowser": false
+=======
+
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/pygame/fire_and_water_EP4A/${file}",
+            "console": "integratedTerminal"
+>>>>>>> d5399e0244d10e5ed19d873cf411d8f5af3a11a9
         }
     ]
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a class="active" href="{{ url_for('home', page_number=1) }}">1</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/2">2</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/3">3</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/4">4</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/5">5</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/6">6</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/7">7</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/8">8</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/9/1/Pavel">9</a></li>
+    <li><a class="active" href="http://127.0.0.1:5000/10">10</a></li>
+
+</ul>
+
+</body>
+</html>
+
+

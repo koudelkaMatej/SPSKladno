@@ -21,5 +21,12 @@ while running:
     player_group.update()
     player_group.draw(screen)
 
+
+
+    if player.alive == False:
+        running = False
     pygame.display.flip()
     clock.tick(60)
+
+
+pygame.quit()

@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from Player import Player
+from draw_hp_bar import draw_hp_bar
 
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -21,8 +22,7 @@ while running:
     player_group.update()
     player_group.draw(screen)
 
-
-
+    draw_hp_bar(screen, player.hp)
     if player.alive == False:
         running = False
     pygame.display.flip()

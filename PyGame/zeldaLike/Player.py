@@ -13,17 +13,24 @@ class Player(pygame.sprite.Sprite):
         self.last_update = pygame.time.get_ticks()
         self.status = "alive"
         self.speed = 3
-        self.hp = 100
+        self.hp = 30
         self.alive = True
         self.death_animation_played = False
         self.facing = 'down'
+        self.attack_cooldown = 1000  # milliseconds
+        self.last_attack_time = 0
+        self.attack_animation_played = False
     def update(self):
         keys = pygame.key.get_pressed()
-
+        self.speed = 3
+        now = pygame.time.get_ticks()
+        if now - self.last_attack_time < self.attack_cooldown:
+              self.frame_update()
+              return
         # Idle check
         if keys[pygame.K_LCTRL]:
             self.hp = 0
-
+        
         # movement of Character
         if keys[pygame.K_LSHIFT]:
             self.speed = 5
@@ -43,13 +50,20 @@ class Player(pygame.sprite.Sprite):
             self.rect.y += self.speed    
             self.facing = 'down'
             self.current_animation = "moveDown"
-
+    
         # Attack check
         if keys[pygame.K_SPACE]:
+            self.attack_animation_played = True
+            self.last_attack_time = pygame.time.get_ticks()
+            self.current_frame = 0
             if self.facing == "down":
                 self.current_animation = "attackDown"
             elif self.facing == "up":
                 self.current_animation = "attackUp"
+            elif self.facing == "left":
+                self.current_animation = "attackLeft"
+            elif self.facing == "right":
+                self.current_animation = "attackRight"
 
 
         #Death check
@@ -64,30 +78,21 @@ class Player(pygame.sprite.Sprite):
             self.current_animation = "idle"
         if self.current_frame >= len(self.animations[self.current_animation]):
             self.current_frame = 0
-        now = pygame.time.get_ticks()
-        if now - self.last_update > FRAME_CHANGE_DELAY: 
-            self.last_update = now
-            self.current_frame = (self.current_frame + 1) % len(self.animations[self.current_animation])
-        self.image = self.animations[self.current_animation][self.current_frame]
+
+        self.frame_update()
         
         # Check if death animation finished
         if self.current_animation == "death" and self.current_frame == len(self.animations["death"]) - 1:
             self.alive = False
 
-
-
-
-
-    def is_alive(self):
-        return self.alive
-
-
-
-
-
-
-
-
+    def frame_update(self):
+        now = pygame.time.get_ticks()
+        if now - self.last_update > FRAME_CHANGE_DELAY: 
+            self.last_update = now
+            self.current_frame = (self.current_frame + 1) % len(self.animations[self.current_animation])
+        self.image = self.animations[self.current_animation][self.current_frame]
+        #center rect image again
+        self.rect = self.image.get_rect(center=self.rect.center)
 
 
     def load_animation_frames(self, base_folder):
@@ -122,7 +127,9 @@ class Player(pygame.sprite.Sprite):
         self.animations["moveLeft"] = self.animations["moveRight"].copy()
         for i in range(len(self.animations["moveLeft"])):
             self.animations["moveLeft"][i] = pygame.transform.flip(self.animations["moveLeft"][i], True, False)
-
+        self.animations["attackLeft"] = self.animations["attackRight"].copy()
+        for i in range(len(self.animations["attackLeft"])):
+            self.animations["attackLeft"][i] = pygame.transform.flip(self.animations["attackLeft"][i], True, False)
 
 if __name__ == "__main__":
     import pokus1

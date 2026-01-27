@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
-import mysql.connector
+import mysql.connector # pip install mysql-connector
 import os
 from pripojeni import *
 
@@ -235,3 +235,7 @@ def logout():
 def home():
     # Hlavní stránka
     return render_template('formular/home.html', email=session.get('email'))
+
+
+if __name__ == "__main__":
+    app.run()

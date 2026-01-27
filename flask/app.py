@@ -27,3 +27,7 @@ def obrazek():
     image_url = url_for('static', filename='images/pan.png')  # cesta k obrázku
     #                         prvni je nazev v HTML druhý je název v pythonu
     return render_template('index5.html', image_url=image_url) 
+
+
+if __name__ == "__main__":
+    app.run()

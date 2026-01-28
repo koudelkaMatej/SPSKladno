@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.last_update = pygame.time.get_ticks()
         self.status = "alive"
         self.speed = 3
-        self.hp = 30
+        self.hp = 100
         self.alive = True
         self.death_animation_played = False
         self.facing = 'down'
@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
               return
         # Idle check
         if keys[pygame.K_LCTRL]:
-            self.hp = 0
+            self.hp -= 1
         
         # movement of Character
         if keys[pygame.K_LSHIFT]:

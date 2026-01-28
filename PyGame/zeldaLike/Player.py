@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.attack_cooldown = 1000  # milliseconds
         self.last_attack_time = 0
         self.attack_animation_played = False
-    def update(self):
+    def update(self, walls=None):
         keys = pygame.key.get_pressed()
         self.speed = 3
         now = pygame.time.get_ticks()
@@ -31,25 +31,28 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_LCTRL]:
             self.hp -= 1
         
-        # movement of Character
-        if keys[pygame.K_LSHIFT]:
-            self.speed = 5
-        if keys[pygame.K_LEFT]:
-            self.rect.x -= self.speed
-            self.current_animation = "moveLeft"
-            self.facing = 'left'
-        if keys[pygame.K_RIGHT]:
-            self.rect.x += self.speed
-            self.current_animation = "moveRight"
-            self.facing = 'right'
-        if keys[pygame.K_UP]:
-            self.rect.y -= self.speed
-            self.current_animation = "moveUp"
-            self.facing = 'up'
-        if keys[pygame.K_DOWN]:
-            self.rect.y += self.speed    
-            self.facing = 'down'
-            self.current_animation = "moveDown"
+            # movement of Character
+            if keys[pygame.K_LSHIFT]:
+                self.speed = 5
+            if keys[pygame.K_LEFT]:
+                self.rect.x -= self.speed
+                self.current_animation = "moveLeft"
+                self.facing = 'left'
+            if keys[pygame.K_RIGHT]:
+                self.rect.x += self.speed
+                self.current_animation = "moveRight"
+                self.facing = 'right'
+            if keys[pygame.K_UP]:
+                self.rect.y -= self.speed
+                self.current_animation = "moveUp"
+                self.facing = 'up'
+            if keys[pygame.K_DOWN]:
+                self.rect.y += self.speed    
+                self.facing = 'down'
+                self.current_animation = "moveDown"
+            
+        # Detekce kolizí se zdmi
+           
     
         # Attack check
         if keys[pygame.K_SPACE]:
@@ -84,6 +87,14 @@ class Player(pygame.sprite.Sprite):
         # Check if death animation finished
         if self.current_animation == "death" and self.current_frame == len(self.animations["death"]) - 1:
             self.alive = False
+
+    def check_wall_collision(self, walls):
+        """Kontroluje kolizi se zdmi a vrátí hráče zpět pokud do nich narazí"""
+        hits = pygame.sprite.spritecollide(self, walls, False)
+        if hits:
+            # Vrátí hráče zpět na poslední validní pozici
+            return True
+        return False
 
     def frame_update(self):
         now = pygame.time.get_ticks()

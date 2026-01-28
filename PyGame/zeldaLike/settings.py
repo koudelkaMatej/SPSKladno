@@ -1,6 +1,6 @@
 # window settings
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 800
 FPS = 60
 ICON_IMAGE_PATH = "obrazky/icon.png"
 
@@ -8,17 +8,24 @@ ICON_IMAGE_PATH = "obrazky/icon.png"
 FONT_NAME = "freesansbold.ttf"
 FONT_SIZE = 20
 
+#map settings
+TILE_SIZE = 20
+FLOOR_DARK_IMAGE_PATH = "obrazky/map_tiles/floor.png"
+FLOOR_LIGHT_IMAGE_PATH = "obrazky/map_tiles/floor_light.png"
+WALL_IMAGE_PATH = "obrazky/map_tiles/wall.png"
+LEVEL_PATH = "mapa1.csv"
+
 # assets
 # locations
 LOCATION_HOME = "Home"
 LOCATION_ROUTE1 = "Vilage"
 
 # player
-PLAYER_SCALE = 1.5
+PLAYER_SCALE = 1.3
 PLAYER_IMAGES_PATH = "obrazky/character"
 FRAME_CHANGE_DELAY = 140
-START_X = SCREEN_WIDTH // 2 
-START_Y = SCREEN_HEIGHT // 2
+START_X = 50
+START_Y = 120
 
 # animations paths
 SWORD_PATH_BASE = "obrazky/character/sword"

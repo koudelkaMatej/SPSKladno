@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Utulek:
     def __init__(self, nazev, kapacita, zvirata=None):
         self.nazev = nazev
@@ -30,3 +31,7 @@ Utulek_s_zviraty.pridej_zvire("Kytka")
 Utulek_s_zviraty.odeber_zvire("Kytka")
 Utulek_s_zviraty.odeber_zvire("Kočka")
 print(Utulek_s_zviraty)
+=======
+vstup = "asdaSD"
+vstup.
+>>>>>>> d3964c2673eaac1b055aba725b3dc44b13d274fb

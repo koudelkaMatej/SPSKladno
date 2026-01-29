@@ -5,11 +5,13 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.animations = {}
+
         self.load_animation_frames(SWORD_PATH_BASE)
         self.current_animation = "idle"
         self.current_frame = 0
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center=(x, y))
+        self.hitbox = self.rect.copy()  # stable collision box
         self.last_update = pygame.time.get_ticks()
         self.status = "alive"
         self.speed = 3
@@ -20,90 +22,34 @@ class Player(pygame.sprite.Sprite):
         self.attack_cooldown = 1000  # milliseconds
         self.last_attack_time = 0
         self.attack_animation_played = False
-    def update(self, walls=None):
+
+    def update(self, walls=None) -> None:
         keys = pygame.key.get_pressed()
         self.speed = 3
         now = pygame.time.get_ticks()
-        if now - self.last_attack_time < self.attack_cooldown:
-              self.frame_update()
-              return
-        # Idle check
-        if keys[pygame.K_LCTRL]:
-            self.hp -= 1
-        
-            # movement of Character
-            if keys[pygame.K_LSHIFT]:
-                self.speed = 5
-            if keys[pygame.K_LEFT]:
-                self.rect.x -= self.speed
-                self.current_animation = "moveLeft"
-                self.facing = 'left'
-            if keys[pygame.K_RIGHT]:
-                self.rect.x += self.speed
-                self.current_animation = "moveRight"
-                self.facing = 'right'
-            if keys[pygame.K_UP]:
-                self.rect.y -= self.speed
-                self.current_animation = "moveUp"
-                self.facing = 'up'
-            if keys[pygame.K_DOWN]:
-                self.rect.y += self.speed    
-                self.facing = 'down'
-                self.current_animation = "moveDown"
-            
-        # Detekce kolizí se zdmi
-           
+
+        if self._is_in_attack_cooldown(now):
+            self._frame_update()
+            return
+
+        self._handle_idle_hp_drain(keys)
+        self._handle_movement(keys, walls)
+        self._handle_attack(keys)
+        self._handle_death()
+        self._handle_idle_animation(keys)
+        self._clamp_frame_index()
+        self._frame_update()
+        self._check_death_animation_finished()
+
     
-        # Attack check
-        if keys[pygame.K_SPACE]:
-            self.attack_animation_played = True
-            self.last_attack_time = pygame.time.get_ticks()
-            self.current_frame = 0
-            if self.facing == "down":
-                self.current_animation = "attackDown"
-            elif self.facing == "up":
-                self.current_animation = "attackUp"
-            elif self.facing == "left":
-                self.current_animation = "attackLeft"
-            elif self.facing == "right":
-                self.current_animation = "attackRight"
-
-
-        #Death check
-        if self.hp <=0 and not self.death_animation_played:
-            self.current_animation = "death"
-            self.current_frame = 0
-            self.last_update = pygame.time.get_ticks()
-            self.death_animation_played = True
-
-        # Animation update
-        if not any(keys) and not self.death_animation_played:
-            self.current_animation = "idle"
-        if self.current_frame >= len(self.animations[self.current_animation]):
-            self.current_frame = 0
-
-        self.frame_update()
-        
-        # Check if death animation finished
-        if self.current_animation == "death" and self.current_frame == len(self.animations["death"]) - 1:
-            self.alive = False
-
-    def check_wall_collision(self, walls):
-        """Kontroluje kolizi se zdmi a vrátí hráče zpět pokud do nich narazí"""
-        hits = pygame.sprite.spritecollide(self, walls, False)
-        if hits:
-            # Vrátí hráče zpět na poslední validní pozici
-            return True
-        return False
-
-    def frame_update(self):
+    def _frame_update(self):
         now = pygame.time.get_ticks()
         if now - self.last_update > FRAME_CHANGE_DELAY: 
             self.last_update = now
             self.current_frame = (self.current_frame + 1) % len(self.animations[self.current_animation])
         self.image = self.animations[self.current_animation][self.current_frame]
-        #center rect image again
-        self.rect = self.image.get_rect(center=self.rect.center)
+        # Sync drawing rect to stable hitbox center
+        self.rect = self.image.get_rect(center=self.hitbox.center)
 
 
     def load_animation_frames(self, base_folder):
@@ -141,6 +87,96 @@ class Player(pygame.sprite.Sprite):
         self.animations["attackLeft"] = self.animations["attackRight"].copy()
         for i in range(len(self.animations["attackLeft"])):
             self.animations["attackLeft"][i] = pygame.transform.flip(self.animations["attackLeft"][i], True, False)
+
+
+
+    def _is_in_attack_cooldown(self, now: int) -> bool:
+        return now - self.last_attack_time < self.attack_cooldown
+
+    def _handle_idle_hp_drain(self, keys):
+        if keys[pygame.K_LCTRL]:
+            self.hp -= 1
+
+    def _handle_movement(self, keys, walls):
+        if keys[pygame.K_LSHIFT]:
+            self.speed = 5
+
+        if keys[pygame.K_LEFT]:
+            self.hitbox.x -= self.speed
+            self.current_animation = "moveLeft"
+            self.facing = "left"
+        if keys[pygame.K_RIGHT]:
+            self.hitbox.x += self.speed
+            self.current_animation = "moveRight"
+            self.facing = "right"
+        if keys[pygame.K_UP]:
+            self.hitbox.y -= self.speed
+            self.current_animation = "moveUp"
+            self.facing = "up"
+        if keys[pygame.K_DOWN]:
+            self.hitbox.y += self.speed
+            self.facing = "down"
+            self.current_animation = "moveDown"
+
+        # Sync rect to hitbox for collision check
+        self.rect.center = self.hitbox.center
+
+        if self._check_wall_collision(walls):
+            if keys[pygame.K_LEFT]:
+                self.hitbox.x += self.speed 
+            if keys[pygame.K_RIGHT]:
+                self.hitbox.x -= self.speed 
+            if keys[pygame.K_UP]:
+                self.hitbox.y += self.speed 
+            if keys[pygame.K_DOWN]:
+                self.hitbox.y -= self.speed 
+
+            # Sync rect again after collision resolution
+            self.rect.center = self.hitbox.center 
+
+    def _handle_attack(self, keys):
+        if not keys[pygame.K_SPACE]:
+            return
+
+        self.attack_animation_played = True
+        self.last_attack_time = pygame.time.get_ticks()
+        self.current_frame = 0
+
+        if self.facing == "down":
+            self.current_animation = "attackDown"
+        elif self.facing == "up":
+            self.current_animation = "attackUp"
+        elif self.facing == "left":
+            self.current_animation = "attackLeft"
+        elif self.facing == "right":
+            self.current_animation = "attackRight"
+
+    def _handle_death(self):
+        if self.hp <= 0 and not self.death_animation_played:
+            self.current_animation = "death"
+            self.current_frame = 0
+            self.last_update = pygame.time.get_ticks()
+            self.death_animation_played = True
+
+    def _handle_idle_animation(self, keys):
+        if not any(keys) and not self.death_animation_played:
+            self.current_animation = "idle"
+
+    def _clamp_frame_index(self):
+        if self.current_frame >= len(self.animations[self.current_animation]):
+            self.current_frame = 0
+
+    def _check_death_animation_finished(self):
+        if (
+            self.current_animation == "death"
+            and self.current_frame == len(self.animations["death"]) - 1
+        ):
+            self.alive = False
+
+    def _check_wall_collision(self, walls):
+        """Kontroluje kolizi se zdmi a vrátí hráče zpět pokud do nich narazí"""
+        hits = pygame.sprite.spritecollide(self, walls, False, pygame.sprite.collide_mask)
+        return bool(hits)
 
 if __name__ == "__main__":
     import pokus1

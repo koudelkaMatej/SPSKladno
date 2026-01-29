@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.status = "alive"
         self.speed = 3
         self.hp = 100
-        self.alive = True
+        self.is_alive = True
         self.death_animation_played = False
         self.facing = 'down'
         self.attack_cooldown = 1000  # milliseconds
@@ -171,10 +171,10 @@ class Player(pygame.sprite.Sprite):
             self.current_animation == "death"
             and self.current_frame == len(self.animations["death"]) - 1
         ):
-            self.alive = False
+            self.is_alive = False
 
     def _check_wall_collision(self, walls):
-        """Kontroluje kolizi se zdmi a vrátí hráče zpět pokud do nich narazí"""
+        """Kontroluje kolizi se zdmi a vraci True, pokud dojde ke kolizi."""
         hits = pygame.sprite.spritecollide(self, walls, False, pygame.sprite.collide_mask)
         return bool(hits)
 

@@ -43,7 +43,7 @@ while running:
     player_group.draw(screen)
 
     draw_hp_bar(screen, player.hp)
-    if player.alive == False:
+    if player.is_alive == False:
         running = False
     pygame.display.flip()
     clock.tick(60)

@@ -1,3 +1,4 @@
+# %%
 import tensorflow as tf  # Import hlavní knihovny TensorFlow pro práci s neuronovými sítěmi
 from tensorflow import keras  # Import API Keras pro snadnější definici modelů
 
@@ -38,6 +39,8 @@ print(f'Přesnost: {test_acc:.4f}')  # Výpis výsledné přesnosti modelu na te
 
 #save model to file
 model.save('mnist_model.h5')
+
+# %%
 
 # open model to use later
 model = keras.models.load_model('mnist_model.h5')

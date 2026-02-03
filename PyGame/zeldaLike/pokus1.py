@@ -1,7 +1,9 @@
 import pygame
 from settings import *
 from Player import Player
+from Skeleton import Skeleton
 from draw_hp_bar import draw_hp_bar
+from draw_hp_bar_enemies import draw_hp_bar_enemies
 from Level import *
 
 pygame.init()
@@ -12,6 +14,11 @@ clock = pygame.time.Clock()
 player_group = pygame.sprite.Group()
 player = Player(START_X, START_Y)
 player_group.add(player)
+
+enemy_group = pygame.sprite.Group()
+skeleton = Skeleton(730, 320)
+skeleton.target_player = player  # Set player as target
+enemy_group.add(skeleton)
 
 level = Level()
 
@@ -41,10 +48,13 @@ while running:
     draw_level(level, screen)
     player_group.update(level.walls)
     player_group.draw(screen)
-
+    enemy_group.update(level.walls)
+    enemy_group.draw(screen)
     draw_hp_bar(screen, player.hp)
     if player.is_alive == False:
         running = False
+    for enemy in enemy_group:
+        draw_hp_bar_enemies(screen, enemy.hp, enemy.rect.centerx-35, enemy.rect.centery+20)
     pygame.display.flip()
     clock.tick(60)
 

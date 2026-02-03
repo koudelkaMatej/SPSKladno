@@ -28,15 +28,8 @@ START_X = 50
 START_Y = 120
 
 # animations paths
-SWORD_PATH_BASE = "obrazky/character/sword"
-SWORD_ATTACK_DOWN_PATH = "obrazky/character/sword/attackDown"
-SWORD_ATTACK_UP_PATH = "obrazky/character/sword/attackUp"
-SWORD_ATTACK_RIGHT_PATH = "obrazky/character/sword/attackRight"
-SWORD_MOVE_DOWN_PATH = "obrazky/character/sword/moveDown"
-SWORD_MOVE_UP_PATH = "obrazky/character/sword/moveUp"
-SWORD_MOVE_RIGHT_PATH = "obrazky/character/sword/moveRight"
-SWORD_IDLE_PATH = "obrazky/character/sword/idle"
-SWORD_DEATH_PATH = "obrazky/character/sword/death"
+SWORD_PATH_BASE = "D:\\Programování\\SPSKladno\\PyGame\\zeldaLike\\obrazky\\character_1_all\\long_sword"
+SKELETON_SWORD_PATH_BASE = "D:\\Programování\\SPSKladno\\PyGame\\zeldaLike\\obrazky\\skeleton\\long_sword"
 
 # Colors
 GREEN = (0, 255, 0)

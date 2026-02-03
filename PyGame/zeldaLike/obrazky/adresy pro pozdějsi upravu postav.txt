@@ -1,0 +1,4 @@
+Hráč 1
+https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_light&head=Human_Male_Gaunt_light&expression=Angry_light&shadow=Shadow_shadow&eye_color=Eye_Color_blue&eyebrows=Thick_Eyebrows_sandy&ears=Big_ears_light&nose=Button_nose_light&necklace=Simple_Necklace_steel&hair=Halfmessy_ash&hat_accessory=Cavalier_feather_white&sleeves=Longsleeves_2_Overlay_maroon&jacket=Frock_coat_maroon&clothes=Shortsleeve_navy&legs=Formal_Pants_orange&shoes=Basic_Boots_rose&weapon=Longsword_longsword
+Skeleton 
+https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Skeleton_skeleton&head=Skeleton_skeleton&expression=Neutral_light&hat=Hood_green&jacket_trim=Frock_coat_lace_gold&cape=Tattered_green&weapon=Longsword_longsword

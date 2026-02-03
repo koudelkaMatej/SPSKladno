@@ -5,9 +5,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.animations = {}
-
-        self.load_animation_frames(SWORD_PATH_BASE)
-        self.current_animation = "idle"
+        self.load_animation_frames(os.path.join(SWORD_PATH_BASE))
+        self.current_animation = "idle_down"
         self.current_frame = 0
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center=(x, y))
@@ -32,11 +31,14 @@ class Player(pygame.sprite.Sprite):
             self._frame_update()
             return
 
-        self._handle_idle_hp_drain(keys)
-        self._handle_movement(keys, walls)
-        self._handle_attack(keys)
+        # Skip all actions when death animation is playing
+        if not self.death_animation_played:
+            self._handle_idle_hp_drain(keys)
+            self._handle_movement(keys, walls)
+            self._handle_attack(keys)
+            self._handle_idle_animation(keys)
+        
         self._handle_death()
-        self._handle_idle_animation(keys)
         self._clamp_frame_index()
         self._frame_update()
         self._check_death_animation_finished()
@@ -53,40 +55,30 @@ class Player(pygame.sprite.Sprite):
 
 
     def load_animation_frames(self, base_folder):
-        self.animations.clear()
-        if not base_folder or not os.path.isdir(base_folder):
-            return
-        for entry in os.scandir(base_folder):
-            if not entry.is_dir():
+        animation_types = [
+            "idle_down", "idle_up", "idle_left",  "idle_right", 
+            "walk_up", "walk_down", "walk_left", "walk_right", "run_up", "run_down", "run_left", "run_right",
+            "slash_up", "slash_down", "slash_left", "slash_right", "thrust_up", "thrust_down", "thrust_left", "thrust_right",
+            "sit_down", "sit_up", "sit_left", "sit_right",
+            "death"
+        ]
+        for animation in animation_types:
+            path = os.path.join(base_folder, *animation.split("_"))
+            if not os.path.isdir(path):
+                print(f"Warning: Animation path '{path}' not found for '{animation}'.")
+                self.animations[animation] = []
                 continue
-            state_name = entry.name  # e.g. "idle"
-            state_path = entry.path
-            frame_files = [
-                f.path for f in os.scandir(state_path)
-                if f.is_file() and f.name.lower().endswith(".png")
-            ]
-            frame_files.sort(key=lambda p: os.path.basename(p).lower())
-            if not frame_files:
-                continue
-
             frames = []
-            for p in frame_files:
-                img = pygame.image.load(p).convert_alpha()
-                if PLAYER_SCALE != 1:
-                    img = pygame.transform.scale(
-                        img,
-                        (int(img.get_width() * PLAYER_SCALE), int(img.get_height() * PLAYER_SCALE))
+            for file_name in sorted(os.listdir(path)):
+                if file_name.endswith('.png'):
+                    image_path = os.path.join(path, file_name)
+                    image = pygame.image.load(image_path).convert_alpha()
+                    scaled_image = pygame.transform.scale(
+                        image,
+                        (int(image.get_width() * PLAYER_SCALE), int(image.get_height() * PLAYER_SCALE))
                     )
-                frames.append(img)
-
-            self.animations[state_name] = frames
-
-        self.animations["moveLeft"] = self.animations["moveRight"].copy()
-        for i in range(len(self.animations["moveLeft"])):
-            self.animations["moveLeft"][i] = pygame.transform.flip(self.animations["moveLeft"][i], True, False)
-        self.animations["attackLeft"] = self.animations["attackRight"].copy()
-        for i in range(len(self.animations["attackLeft"])):
-            self.animations["attackLeft"][i] = pygame.transform.flip(self.animations["attackLeft"][i], True, False)
+                    frames.append(scaled_image)
+            self.animations[animation] = frames
 
 
 
@@ -100,23 +92,21 @@ class Player(pygame.sprite.Sprite):
     def _handle_movement(self, keys, walls):
         if keys[pygame.K_LSHIFT]:
             self.speed = 5
-
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] :
             self.hitbox.x -= self.speed
-            self.current_animation = "moveLeft"
             self.facing = "left"
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] :
             self.hitbox.x += self.speed
-            self.current_animation = "moveRight"
+
             self.facing = "right"
         if keys[pygame.K_UP]:
             self.hitbox.y -= self.speed
-            self.current_animation = "moveUp"
             self.facing = "up"
         if keys[pygame.K_DOWN]:
             self.hitbox.y += self.speed
             self.facing = "down"
-            self.current_animation = "moveDown"
+        
+        self._update_movement_animation()
 
         # Sync rect to hitbox for collision check
         self.rect.center = self.hitbox.center
@@ -132,7 +122,12 @@ class Player(pygame.sprite.Sprite):
                 self.hitbox.y -= self.speed 
 
             # Sync rect again after collision resolution
-            self.rect.center = self.hitbox.center 
+            self.rect.center = self.hitbox.center
+
+    def _update_movement_animation(self):
+        """Update animation based on current speed and facing direction."""
+        animation_prefix = "run" if self.speed == 5 else "walk"
+        self.current_animation = f"{animation_prefix}_{self.facing}" 
 
     def _handle_attack(self, keys):
         if not keys[pygame.K_SPACE]:
@@ -143,13 +138,13 @@ class Player(pygame.sprite.Sprite):
         self.current_frame = 0
 
         if self.facing == "down":
-            self.current_animation = "attackDown"
+            self.current_animation = "slash_down"
         elif self.facing == "up":
-            self.current_animation = "attackUp"
+            self.current_animation = "slash_up"
         elif self.facing == "left":
-            self.current_animation = "attackLeft"
+            self.current_animation = "slash_left"
         elif self.facing == "right":
-            self.current_animation = "attackRight"
+            self.current_animation = "slash_right"
 
     def _handle_death(self):
         if self.hp <= 0 and not self.death_animation_played:
@@ -160,7 +155,7 @@ class Player(pygame.sprite.Sprite):
 
     def _handle_idle_animation(self, keys):
         if not any(keys) and not self.death_animation_played:
-            self.current_animation = "idle"
+            self.current_animation = f"idle_{self.facing}"
 
     def _clamp_frame_index(self):
         if self.current_frame >= len(self.animations[self.current_animation]):
@@ -175,6 +170,7 @@ class Player(pygame.sprite.Sprite):
 
     def _check_wall_collision(self, walls):
         """Kontroluje kolizi se zdmi a vraci True, pokud dojde ke kolizi."""
+
         hits = pygame.sprite.spritecollide(self, walls, False, pygame.sprite.collide_mask)
         return bool(hits)
 

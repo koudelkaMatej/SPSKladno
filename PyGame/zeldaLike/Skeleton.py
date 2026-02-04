@@ -73,7 +73,7 @@ class Skeleton(Player):
     def enemy_in_range(self):
         if self.target_player is None:
             return False
-        attack_range = 50  # Define attack range
+        attack_range = 75  # Define attack range
         skeleton_pos = pygame.math.Vector2(self.rect.center)
         player_pos = pygame.math.Vector2(self.target_player.rect.center)
         distance = skeleton_pos.distance_to(player_pos)

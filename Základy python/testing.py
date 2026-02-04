@@ -1,37 +1,20 @@
-<<<<<<< HEAD
-class Utulek:
-    def __init__(self, nazev, kapacita, zvirata=None):
-        self.nazev = nazev
-        self.kapacita = kapacita
-        self.zvirata = [] if zvirata is None else zvirata
-    def pridej_zvire(self, zvire):
-        if len(self.zvirata) < self.kapacita:
-            if zvire in self.zvirata:
-                print(f"{zvire} už je v útulku.")
-            else:
-                self.zvirata.append(zvire)
-                print(f"{zvire} byl přidán do útulku.")
-        else:
-            print("Útulek je plný!")
+PI = 3.14 # PI používáme jako konstantu - jeho hodnota se nikdy neměnní
+pocet_pouziti_funkce = 0
+E = 2.17 # při druhém spuštění této buňky už E existuje, takže podruhé to projde...
+obvod = 0
+def obvod_kruhu(polomer):
+  global pocet_pouziti_funkce #
+  global obvod
+  pocet_pouziti_funkce += 1
+  obvod = 2*PI*polomer # hodnotu PI můžeme číst
+  print("E uvnitř funkce:",E) # hodnotu E nemůžeme číst - vytváříme ji až po zavolání funkce
+  return obvod
 
-    def odeber_zvire(self, zvire):
-        if zvire in self.zvirata:
-            self.zvirata.remove(zvire)
-            print("Zviře bylo odebráno")
-        else:
-            print("Zvíře v utulku není")
+O1 = obvod_kruhu(5)
+O1 = obvod_kruhu(5)
+O1 = obvod_kruhu(5)
+E = 2.17 # při druhém spuštění této buňky už E existuje, takže podruhé to projde...
 
-    def __str__(self):
-        return f"Utulek '{self.nazev}' s kapacitou {self.kapacita} a zviraty: {', '.join(self.zvirata) if self.zvirata else 'žádná zvířata'}"       
-zv1 = "Jezevec"
-Utulek_bez_zvirat = Utulek("Happy Paws", 5)
-Utulek_s_zviraty = Utulek("Animal Haven", 3, [zv1,"Kočka"])
-Utulek_s_zviraty.pridej_zvire("Rybička")
-Utulek_s_zviraty.pridej_zvire("Kytka")
-Utulek_s_zviraty.odeber_zvire("Kytka")
-Utulek_s_zviraty.odeber_zvire("Kočka")
-print(Utulek_s_zviraty)
-=======
-vstup = "asdaSD"
-vstup.
->>>>>>> d3964c2673eaac1b055aba725b3dc44b13d274fb
+print("Počet použítí funkce:",pocet_pouziti_funkce)
+print("Obvod O1:",O1)
+print("obvod:",obvod) # obvod zde neexistuje - existuje pouze uvnitř funkce

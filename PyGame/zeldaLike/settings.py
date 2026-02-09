@@ -28,8 +28,8 @@ START_X = 50
 START_Y = 120
 
 # animations paths
-SWORD_PATH_BASE = "D:\\Programování\\SPSKladno\\PyGame\\zeldaLike\\obrazky\\character_1_all\\long_sword"
-SKELETON_SWORD_PATH_BASE = "D:\\Programování\\SPSKladno\\PyGame\\zeldaLike\\obrazky\\skeleton\\long_sword"
+SWORD_PATH_BASE = "obrazky\\character_1_all\\long_sword"
+SKELETON_SWORD_PATH_BASE = "obrazky\\skeleton\\long_sword"
 
 # Colors
 GREEN = (0, 255, 0)

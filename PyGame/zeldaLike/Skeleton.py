@@ -94,5 +94,7 @@ class Skeleton(Player):
         elif self.facing == "right":
             self.current_animation = "slash_right"
 
+    
+
 if __name__ == "__main__":
     import pokus1

@@ -55,6 +55,14 @@ while running:
         running = False
     for enemy in enemy_group:
         draw_hp_bar_enemies(screen, enemy.hp, enemy.rect.centerx-35, enemy.rect.centery+20)
+    
+    if player._is_in_attack_cooldown(pygame.time.get_ticks()):
+        for enemy in enemy_group:
+            if player.hitbox.colliderect(enemy.hitbox):
+                enemy.hp -= 20
+                if enemy.is_alive and enemy.hp <= 0:
+                    enemy_group.remove(enemy)
+
     pygame.display.flip()
     clock.tick(60)
 

@@ -34,11 +34,7 @@ def obrazek():
     #                         prvni je nazev v HTML druhý je název v pythonu
     return render_template('index5.html', image_url=image_url) 
 
-<<<<<<< HEAD
 
-if __name__ == "__main__":
-    app.run()
-=======
 @app.route('/6', methods=['GET', 'POST']) # Předání formulářem z HTML do pythonu 
 def prvniFormularCislo():
     result = None
@@ -129,15 +125,14 @@ def parametry(id, name):
 @app.route('/10', methods=['GET', 'POST']) # Předání formulářem z HTML do pythonu 
 def redirekting():
     result = None
-    if request.method == 'POST':
-        number = request.form.get('number', type=int)
-        result = number
-        if number == 1:
-            return redirect('/1')
-        elif number == 2:
-            return redirect('/2')
-        else:
-            return render_template("index10.html", result = result)
+    if request.method != 'POST':
+        return render_template("index10.html", result = result)
+    number = request.form.get('number', type=int)
+    result = number
+    if result == 1:
+        return redirect('/1')
+    elif result == 2:
+        return redirect('/2')
     else:
         return render_template("index10.html", result = result)
     
@@ -223,19 +218,18 @@ def tabulka():
     if 'email' not in session:
         # Pokud uživatel není přihlášený, přesměrujeme ho na login
         return redirect(url_for('login'))
-    elif 'email' in session:
-        mydb = mysql.connector.connect(
-            host = HOST
-            ,user = USER
-            ,password = PASSWORD
-            ,database = DATABASE
-        )
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM uzivatele")
-        result = mycursor.fetchall()
-        
-        return render_template("tabulka.html", email=session.get('email'), items = result)
+    mydb = mysql.connector.connect(
+        host = HOST
+        ,user = USER
+        ,password = PASSWORD
+        ,database = DATABASE
+    )
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM uzivatele")
+    result = mycursor.fetchall()
+
+    return render_template("tabulka.html", email=session.get('email'), items = result)
 
 if __name__ == '__main__':
     app.run()
->>>>>>> f55ee4e5424a1506d697c2a7a0498b697706e49d
+

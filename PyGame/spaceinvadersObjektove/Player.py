@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(x, y)) 
         self.screenWidth = width
         self.screenHeight = height
-        self.explosion_frames = [pygame.image.load(f"spaceinvadersObjektove/obr/{i}exploze.png") for i in range(6)]
+        self.explosion_frames = [pygame.image.load(f"obr/{i}exploze.png") for i in range(6)]
         self.explosion_index = 0
         self.explosion_duration = 100  # Time between each frame in milliseconds
         self.last_explosion_update = pygame.time.get_ticks()

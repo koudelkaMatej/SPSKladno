@@ -31,11 +31,11 @@ def generateEnemies(): # funkce pro vykreslení všech nepřátel na mapě
 clock = pygame.time.Clock()  # pro FPS
 screen = pygame.display.set_mode((550, 500))
 width, height = screen.get_size()
-spaceshipImagePath = "spaceinvadersObjektove/obr/spaceship.png"
+spaceshipImagePath = "obr/spaceship.png"
 spaceshipSize = (60,60)
-enemyImagePath = "spaceinvadersObjektove/obr/ufo.png"
+enemyImagePath = "obr/ufo.png"
 enemySize = (40,40)
-missleImagePath = "spaceinvadersObjektove/obr/shot.png"
+missleImagePath = "obr/shot.png"
 missleSize = (10,30)
 player = Player(275,460,spaceshipImagePath,spaceshipSize,width,height)
 enemy = Enemy(45,45,enemyImagePath,enemySize)

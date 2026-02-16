@@ -17,6 +17,9 @@ class Skeleton(Player):
         self.movement_decided = False
         self.decision_time = 0
         self.target_player = None  # Reference to the player to attack
+        self.is_dead_for_500ms = False
+        self.death_time = 0
+        self.death_animation_played = False  # Ensure death animation plays only once
 
 
     def _handle_movement(self, keys, walls):
@@ -77,6 +80,22 @@ class Skeleton(Player):
         skeleton_pos = pygame.math.Vector2(self.rect.center)
         player_pos = pygame.math.Vector2(self.target_player.rect.center)
         distance = skeleton_pos.distance_to(player_pos)
+        #rotate skeleton to face player if in range
+        if distance <= attack_range:
+            if player_pos.x - skeleton_pos.x > player_pos.y - skeleton_pos.y:
+                if player_pos.x < skeleton_pos.x:
+                    self.facing = 'left'
+                elif player_pos.x > skeleton_pos.x:
+                    self.facing = 'right'
+                else:
+                    if player_pos.y < skeleton_pos.y:
+                        self.facing = 'up'
+                    elif player_pos.y > skeleton_pos.y:
+                        self.facing = 'down'
+                if player_pos.y < skeleton_pos.y:
+                    self.facing = 'up'
+                elif player_pos.y > skeleton_pos.y:
+                    self.facing = 'down'
         return distance <= attack_range
     def _handle_attack(self, keys):
         if self.enemy_in_range() == False:
@@ -95,6 +114,42 @@ class Skeleton(Player):
             self.current_animation = "slash_right"
 
     
+    def _frame_update(self):
+        if not self.is_alive:
+            # Stay frozen on the last death frame
+            self.current_frame = len(self.animations["death"]) - 1
+            self.image = self.animations["death"][self.current_frame]
+            self.rect = self.image.get_rect(center=self.hitbox.center)
+            return
+
+        # For death animation: advance frame WITHOUT wrapping (stop at last frame)
+        if self.current_animation == "death":
+            now = pygame.time.get_ticks()
+            if now - self.last_update > FRAME_CHANGE_DELAY:
+                self.last_update = now
+                if self.current_frame < len(self.animations["death"]) - 1:
+                    self.current_frame += 1
+            self.image = self.animations[self.current_animation][self.current_frame]
+            self.rect = self.image.get_rect(center=self.hitbox.center)
+            return
+
+        super()._frame_update()
+
+    def _check_death_animation_finished(self):
+        if (
+            self.current_animation == "death"
+            and self.current_frame == len(self.animations["death"]) - 1
+            and self.is_alive
+        ):
+            self.is_alive = False
+            self.death_time = pygame.time.get_ticks() + 5400
+
+        if not self.is_alive:
+            self.__remove_dead_enemy()
+
+    def __remove_dead_enemy(self):
+        if pygame.time.get_ticks() >= self.death_time:
+            self.kill()
 
 if __name__ == "__main__":
     import pokus1

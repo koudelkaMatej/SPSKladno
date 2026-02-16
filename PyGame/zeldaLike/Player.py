@@ -21,6 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.attack_cooldown = 1000  # milliseconds
         self.last_attack_time = 0
         self.attack_animation_played = False
+        self.invincibility_duration = 1000  # milliseconds
+        self.last_hit_time = 0
+        self.slash_damage = 20
 
     def update(self, walls=None) -> None:
         keys = pygame.key.get_pressed()
@@ -168,6 +171,17 @@ class Player(pygame.sprite.Sprite):
         ):
             self.is_alive = False
 
+    def get_damage(self):
+        if self.current_animation.__contains__("slash") and self.attack_animation_played:
+            return self.slash_damage
+        else:
+            return 0
+
+    def set_damage(self, damage):
+        now = pygame.time.get_ticks()
+        if now - self.last_hit_time >= self.invincibility_duration:
+            self.hp -= damage
+            self.last_hit_time = now
     def _check_wall_collision(self, walls):
         """Kontroluje kolizi se zdmi a vraci True, pokud dojde ke kolizi."""
 

@@ -2,9 +2,9 @@ from settings import *
 import pygame
 pygame.font.init()
 # Function to draw the HP bar
-def draw_hp_bar_enemies(screen, current_hp, x, y):
+def draw_hp_bar_enemies(screen, current_hp,x=0, y=0, max_hp=50):
     # Calculate the width of the health bar based on current HP
-    hp_percentage = current_hp / 100
+    hp_percentage = current_hp / max_hp
     bar_width = int(HP_BAR_WIDTH * hp_percentage)
 
     # Determine color based on HP percentage
@@ -19,4 +19,4 @@ def draw_hp_bar_enemies(screen, current_hp, x, y):
     # Draw the current HP
     pygame.draw.rect(screen, color, (x, y + 25, bar_width * 0.4 , HP_BAR_HEIGHT * 0.2))
     # Draw the border
-    pygame.draw.rect(screen, WHITE, (x, y + 25, HP_BAR_WIDTH * 0.4, HP_BAR_HEIGHT * 0.2), 2)
+    pygame.draw.rect(screen, WHITE, (x, y + 25, HP_BAR_WIDTH * 0.4, HP_BAR_HEIGHT * 0.2), 1)

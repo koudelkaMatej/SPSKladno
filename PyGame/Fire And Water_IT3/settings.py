@@ -14,3 +14,8 @@ LEVEL_PATH = "Assets/Levels/level{}.csv"
 TILE_SIZE = 40
 DIRT_IMAGE_PATH = "Assets/Images/dirt.png"
 LAVA_IMAGE_PATH = "Assets/ohen a voda/lava/1.png"
+
+#fireboy settings
+FIREBOY_IDLE_IMAGE_PATH = "Assets/ohen a voda/boy_still/{}.png"
+FIREBOY_RIGHT_IMAGE_PATH = "Assets/ohen a voda/boy_right/{}.png"
+FIREBOY_SCALE = 0.15

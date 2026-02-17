@@ -19,6 +19,10 @@ class Level:
         self.wall_image = pygame.image.load(WALL_IMAGE_PATH).convert()
         self.wall_image = pygame.transform.scale(self.wall_image, (TILE_SIZE, TILE_SIZE))
         
+        # Pozice monster
+        self.monster_positions = {"Skeletons": [], "Dragons": []}
+        self.find_monster_positions()
+
         # Vytvoření sprite grupy pro zdi (kolize)
         self.walls = pygame.sprite.Group()
         self.create_walls()
@@ -41,6 +45,14 @@ class Level:
                     wall = Wall(sloupec * TILE_SIZE, radek * TILE_SIZE)
                     self.walls.add(wall)
 
+    def find_monster_positions(self):
+        """Najde pozice monster v levelu (55 = Skeleton)"""
+        for radek in range(len(self.level_data)):
+            for sloupec in range(len(self.level_data[0])):
+                if self.level_data[radek][sloupec] == 55:  # 55 = pozice pro skeleton
+                    x = sloupec * TILE_SIZE + TILE_SIZE // 2
+                    y = radek * TILE_SIZE + TILE_SIZE // 2
+                    self.monster_positions["Skeletons"].append((x, y))
 
 
                     

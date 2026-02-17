@@ -11,7 +11,8 @@ class Skeleton(Player):
         self.current_animation = "idle_down"
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center=(x, y))
-        self.hitbox = self.rect.copy()  # stable collision box
+        self.hitbox = pygame.Rect(0, 0, TILE_SIZE, TILE_SIZE)  # smaller collision box
+        self.hitbox.midbottom = self.rect.midbottom
         self.speed = 2
         self.hp = 50
         self.movement_decided = False
@@ -48,54 +49,64 @@ class Skeleton(Player):
             if current_time - self.decision_time > 2000:  # Move for 2 seconds
                 self.movement_decided = False
         
-        # Actually move the skeleton
+        # Move X axis, check collision
         self.hitbox.x += self.direction.x * self.speed
-        self.hitbox.y += self.direction.y * self.speed
-        
-        self._update_movement_animation()
-
-        # Sync rect to hitbox for collision check
         self.rect.center = self.hitbox.center
-
         if self._check_wall_collision(walls):
-            # Reverse the movement
             self.hitbox.x -= self.direction.x * self.speed
-            self.hitbox.y -= self.direction.y * self.speed
-            # Force new decision on wall collision
             self.movement_decided = False
-            # Sync rect again after collision resolution
-            self.rect.center = self.hitbox.center
+
+        # Move Y axis, check collision
+        self.hitbox.y += self.direction.y * self.speed
+        self.rect.center = self.hitbox.center
+        if self._check_wall_collision(walls):
+            self.hitbox.y -= self.direction.y * self.speed
+            self.movement_decided = False
+
+        self._update_movement_animation()
+        self.rect.center = self.hitbox.center
 
     def _check_wall_collision(self, walls):
         """Kontroluje kolizi se zdmi a vraci True, pokud dojde ke kolizi."""
         if walls is None:
             return False
-        hits = pygame.sprite.spritecollide(self, walls, False, pygame.sprite.collide_mask)
-        return bool(hits)
+        for wall in walls:
+            if self.hitbox.colliderect(wall.rect):
+                return True
+        return False
     
+    def _handle_attack_animation(self, keys):
+        if not self.enemy_in_range():
+            return
+
+        self.attack_animation_played = True
+        self.last_attack_time = pygame.time.get_ticks()
+        self.current_frame = 0
+
+        if self.facing == "down":
+            self.current_animation = "slash_down"
+        elif self.facing == "up":
+            self.current_animation = "slash_up"
+        elif self.facing == "left":
+            self.current_animation = "slash_left"
+        elif self.facing == "right":
+            self.current_animation = "slash_right"
+
     def enemy_in_range(self):
         if self.target_player is None:
             return False
         attack_range = 75  # Define attack range
-        skeleton_pos = pygame.math.Vector2(self.rect.center)
-        player_pos = pygame.math.Vector2(self.target_player.rect.center)
+        skeleton_pos = pygame.math.Vector2(self.hitbox.center)
+        player_pos = pygame.math.Vector2(self.target_player.hitbox.center)
         distance = skeleton_pos.distance_to(player_pos)
-        #rotate skeleton to face player if in range
+        # Face toward the player if in range
         if distance <= attack_range:
-            if player_pos.x - skeleton_pos.x > player_pos.y - skeleton_pos.y:
-                if player_pos.x < skeleton_pos.x:
-                    self.facing = 'left'
-                elif player_pos.x > skeleton_pos.x:
-                    self.facing = 'right'
-                else:
-                    if player_pos.y < skeleton_pos.y:
-                        self.facing = 'up'
-                    elif player_pos.y > skeleton_pos.y:
-                        self.facing = 'down'
-                if player_pos.y < skeleton_pos.y:
-                    self.facing = 'up'
-                elif player_pos.y > skeleton_pos.y:
-                    self.facing = 'down'
+            dx = player_pos.x - skeleton_pos.x
+            dy = player_pos.y - skeleton_pos.y
+            if abs(dx) > abs(dy):
+                self.facing = 'right' if dx > 0 else 'left'
+            else:
+                self.facing = 'down' if dy > 0 else 'up'
         return distance <= attack_range
     def _handle_attack(self, keys):
         if self.enemy_in_range() == False:

@@ -10,7 +10,10 @@ class Player(pygame.sprite.Sprite):
         self.current_frame = 0
         self.image = self.animations[self.current_animation][self.current_frame]
         self.rect = self.image.get_rect(center=(x, y))
-        self.hitbox = self.rect.copy()  # stable collision box
+        self.hitbox = pygame.Rect(0, 0, TILE_SIZE+10 , TILE_SIZE)  # wider collision box
+        self.hitbox.midbottom = self.rect.midbottom
+        self.hitbox_offset_y = 15  # sprite drawn above hitbox
+        self.wall_collision_extend_down = 15  # extra px added to hitbox bottom for down wall check
         self.last_update = pygame.time.get_ticks()
         self.status = "alive"
         self.speed = 3
@@ -24,6 +27,13 @@ class Player(pygame.sprite.Sprite):
         self.invincibility_duration = 1000  # milliseconds
         self.last_hit_time = 0
         self.slash_damage = 20
+        self.thrust_damage = 40
+        self.stamina = 100
+        self.max_stamina = 100
+        self.thrust_stamina_cost = 30
+        self.stamina_regen_rate = 1  # points per tick
+        self.stamina_regen_interval = 2000  # ms (1 point every 2 sec)
+        self.last_stamina_regen = pygame.time.get_ticks()
 
     def update(self, walls=None) -> None:
         keys = pygame.key.get_pressed()
@@ -40,11 +50,9 @@ class Player(pygame.sprite.Sprite):
             self._handle_movement(keys, walls)
             self._handle_attack_animation(keys)
             self._handle_idle_animation(keys)
-            if self.is_wounded and now - self.wound_effect_start_time < self.wound_effect_duration:
-                self.wound_effect()
         
-
         self._handle_death()
+        self._handle_stamina_regen()
         self._clamp_frame_index()
         self._frame_update()
         self._check_death_animation_finished()
@@ -56,8 +64,8 @@ class Player(pygame.sprite.Sprite):
             self.last_update = now
             self.current_frame = (self.current_frame + 1) % len(self.animations[self.current_animation])
         self.image = self.animations[self.current_animation][self.current_frame]
-        # Sync drawing rect to stable hitbox center
-        self.rect = self.image.get_rect(center=self.hitbox.center)
+        # Sync drawing rect to hitbox with vertical offset (sprite drawn above hitbox)
+        self.rect = self.image.get_rect(center=(self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y))
 
 
     def load_animation_frames(self, base_folder):
@@ -104,37 +112,39 @@ class Player(pygame.sprite.Sprite):
     def _handle_movement(self, keys, walls):
         if keys[pygame.K_LSHIFT]:
             self.speed = 5
-        if keys[pygame.K_LEFT] :
+
+        # --- Move X axis first, check collision, resolve ---
+        if keys[pygame.K_LEFT]:
             self.hitbox.x -= self.speed
             self.facing = "left"
-        if keys[pygame.K_RIGHT] :
+        if keys[pygame.K_RIGHT]:
             self.hitbox.x += self.speed
-
             self.facing = "right"
+
+        self.rect.center = (self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y)
+        if self._check_wall_collision(walls):
+            if keys[pygame.K_LEFT]:
+                self.hitbox.x += self.speed
+            if keys[pygame.K_RIGHT]:
+                self.hitbox.x -= self.speed
+
+        # --- Move Y axis, check collision, resolve ---
         if keys[pygame.K_UP]:
             self.hitbox.y -= self.speed
             self.facing = "up"
         if keys[pygame.K_DOWN]:
             self.hitbox.y += self.speed
             self.facing = "down"
-        
-        self._update_movement_animation()
 
-        # Sync rect to hitbox for collision check
-        self.rect.center = self.hitbox.center
-
-        if self._check_wall_collision(walls):
-            if keys[pygame.K_LEFT]:
-                self.hitbox.x += self.speed 
-            if keys[pygame.K_RIGHT]:
-                self.hitbox.x -= self.speed 
+        self.rect.center = (self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y)
+        if self._check_wall_collision(walls, extend_down=(keys[pygame.K_DOWN])):
             if keys[pygame.K_UP]:
-                self.hitbox.y += self.speed 
+                self.hitbox.y += self.speed
             if keys[pygame.K_DOWN]:
-                self.hitbox.y -= self.speed 
+                self.hitbox.y -= self.speed
 
-            # Sync rect again after collision resolution
-            self.rect.center = self.hitbox.center
+        self._update_movement_animation()
+        self.rect.center = (self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y)
 
     def _update_movement_animation(self):
         """Update animation based on current speed and facing direction."""
@@ -142,21 +152,33 @@ class Player(pygame.sprite.Sprite):
         self.current_animation = f"{animation_prefix}_{self.facing}" 
 
     def _handle_attack_animation(self, keys):
-        if not keys[pygame.K_SPACE]:
-            return
-
-        self.attack_animation_played = True
-        self.last_attack_time = pygame.time.get_ticks()
-        self.current_frame = 0
-
-        if self.facing == "down":
-            self.current_animation = "slash_down"
-        elif self.facing == "up":
-            self.current_animation = "slash_up"
-        elif self.facing == "left":
-            self.current_animation = "slash_left"
-        elif self.facing == "right":
-            self.current_animation = "slash_right"
+        if keys[pygame.K_SPACE]:
+            self.attack_animation_played = True
+            self.last_attack_time = pygame.time.get_ticks()
+            self.current_frame = 0
+            if self.facing == "down":
+                self.current_animation = "slash_down"
+            elif self.facing == "up":
+                self.current_animation = "slash_up"
+            elif self.facing == "left":
+                self.current_animation = "slash_left"
+            elif self.facing == "right":
+                self.current_animation = "slash_right"
+        elif keys[pygame.K_t]:
+            if self.stamina < self.thrust_stamina_cost:
+                return  # not enough stamina, do nothing
+            self.stamina -= self.thrust_stamina_cost
+            self.attack_animation_played = True
+            self.last_attack_time = pygame.time.get_ticks()
+            self.current_frame = 0
+            if self.facing == "down":
+                self.current_animation = "thrust_down"
+            elif self.facing == "up":
+                self.current_animation = "thrust_up"
+            elif self.facing == "left":
+                self.current_animation = "thrust_left"
+            elif self.facing == "right":
+                self.current_animation = "thrust_right"
 
     def _handle_death(self):
         if self.hp <= 0 and not self.death_animation_played:
@@ -164,6 +186,12 @@ class Player(pygame.sprite.Sprite):
             self.current_frame = 0
             self.last_update = pygame.time.get_ticks()
             self.death_animation_played = True
+
+    def _handle_stamina_regen(self):
+        now = pygame.time.get_ticks()
+        if self.stamina < self.max_stamina and now - self.last_stamina_regen >= self.stamina_regen_interval:
+            self.stamina = min(self.stamina + self.stamina_regen_rate, self.max_stamina)
+            self.last_stamina_regen = now
 
     def _handle_idle_animation(self, keys):
         if not any(keys) and not self.death_animation_played:
@@ -181,21 +209,63 @@ class Player(pygame.sprite.Sprite):
             self.is_alive = False
 
     def get_damage(self):
-        if self.current_animation.__contains__("slash") and self.attack_animation_played:
-            return self.slash_damage
-        else:
+        if not self.attack_animation_played:
             return 0
+        if "slash" in self.current_animation:
+            return self.slash_damage
+        if "thrust" in self.current_animation:
+            return self.thrust_damage
+        return 0
+
+    def get_slash_hitbox(self):
+        """Wide arc in front of the player for slash attack."""
+        attack_range = 70
+        attack_width = 50
+        if self.facing == "up":
+            return pygame.Rect(self.hitbox.centerx - attack_width // 2, self.hitbox.top - attack_range, attack_width, attack_range)
+        elif self.facing == "down":
+            return pygame.Rect(self.hitbox.centerx - attack_width // 2, self.hitbox.bottom, attack_width, attack_range)
+        elif self.facing == "left":
+            return pygame.Rect(self.hitbox.left - attack_range, self.hitbox.centery - attack_width // 2, attack_range, attack_width)
+        elif self.facing == "right":
+            return pygame.Rect(self.hitbox.right, self.hitbox.centery - attack_width // 2, attack_range, attack_width)
+        return self.hitbox
+
+    def get_thrust_hitbox(self):
+        """Narrow and long rect in front of the player for thrust attack."""
+        attack_range = 100
+        attack_width = 20
+        if self.facing == "up":
+            return pygame.Rect(self.hitbox.centerx - attack_width // 2, self.hitbox.top - attack_range, attack_width, attack_range)
+        elif self.facing == "down":
+            return pygame.Rect(self.hitbox.centerx - attack_width // 2, self.hitbox.bottom, attack_width, attack_range)
+        elif self.facing == "left":
+            return pygame.Rect(self.hitbox.left - attack_range, self.hitbox.centery - attack_width // 2, attack_range, attack_width)
+        elif self.facing == "right":
+            return pygame.Rect(self.hitbox.right, self.hitbox.centery - attack_width // 2, attack_range, attack_width)
+        return self.hitbox
+
+    def get_attack_hitbox(self):
+        """Returns the appropriate attack hitbox based on current animation."""
+        if "thrust" in self.current_animation:
+            return self.get_thrust_hitbox()
+        return self.get_slash_hitbox()
 
     def set_damage(self, damage):
         now = pygame.time.get_ticks()
         if now - self.last_hit_time >= self.invincibility_duration:
             self.hp -= damage
             self.last_hit_time = now
-    def _check_wall_collision(self, walls):
-        """Kontroluje kolizi se zdmi a vraci True, pokud dojde ke kolizi."""
-
-        hits = pygame.sprite.spritecollide(self, walls, False, pygame.sprite.collide_mask)
-        return bool(hits)
+    def _check_wall_collision(self, walls, extend_down=False):
+        """Kontroluje kolizi se zdmi. Pokud extend_down, zvětší hitbox dolů."""
+        check_rect = self.hitbox
+        if extend_down:
+            check_rect = self.hitbox.inflate(0, self.wall_collision_extend_down)
+            check_rect.top = self.hitbox.top  # extend only downward
+        for wall in walls:
+            if check_rect.colliderect(wall.rect):
+                return True
+        return False
 
 if __name__ == "__main__":
     import pokus1

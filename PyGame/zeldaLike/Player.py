@@ -233,7 +233,7 @@ class Player(pygame.sprite.Sprite):
 
     def get_thrust_hitbox(self):
         """Narrow and long rect in front of the player for thrust attack."""
-        attack_range = 100
+        attack_range = 90
         attack_width = 20
         if self.facing == "up":
             return pygame.Rect(self.hitbox.centerx - attack_width // 2, self.hitbox.top - attack_range, attack_width, attack_range)

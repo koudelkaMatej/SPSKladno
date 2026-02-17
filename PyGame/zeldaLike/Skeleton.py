@@ -13,7 +13,7 @@ class Skeleton(Player):
         self.rect = self.image.get_rect(center=(x, y))
         self.hitbox = pygame.Rect(0, 0, TILE_SIZE, TILE_SIZE)  # smaller collision box
         self.hitbox.midbottom = self.rect.midbottom
-        self.speed = 2
+        self.speed = 1
         self.hp = 50
         self.movement_decided = False
         self.decision_time = 0
@@ -24,30 +24,53 @@ class Skeleton(Player):
 
 
     def _handle_movement(self, keys, walls):
-        if not self.movement_decided:
-            self.direction = pygame.math.Vector2(0, 0)
-            move_choice = rand.choice(['up', 'down', 'left', 'right', 'idle'])
-            if move_choice == 'up':
-                self.direction.y = -1
-                self.facing = 'up'
-            elif move_choice == 'down':
-                self.direction.y = 1
-                self.facing = 'down'
-            elif move_choice == 'left':
-                self.direction.x = -1
-                self.facing = 'left'
-            elif move_choice == 'right':
-                self.direction.x = 1
-                self.facing = 'right'
-            else:
-                self.direction.x = 0
-                self.direction.y = 0
-            self.decision_time = pygame.time.get_ticks()
-            self.movement_decided = True  # Mark decision as made
+        detection_range = 80
+
+        # Check if player is within detection range
+        if self.target_player is not None:
+            skeleton_pos = pygame.math.Vector2(self.hitbox.center)
+            player_pos = pygame.math.Vector2(self.target_player.hitbox.center)
+            distance = skeleton_pos.distance_to(player_pos)
         else:
-            current_time = pygame.time.get_ticks()
-            if current_time - self.decision_time > 2000:  # Move for 2 seconds
-                self.movement_decided = False
+            distance = float('inf')
+
+        if distance <= detection_range:
+            # Chase the player
+            dx = player_pos.x - skeleton_pos.x
+            dy = player_pos.y - skeleton_pos.y
+            self.direction = pygame.math.Vector2(0, 0)
+            if abs(dx) > abs(dy):
+                self.direction.x = 1 if dx > 0 else -1
+                self.facing = 'right' if dx > 0 else 'left'
+            else:
+                self.direction.y = 1 if dy > 0 else -1
+                self.facing = 'down' if dy > 0 else 'up'
+        else:
+            # Random movement
+            if not self.movement_decided:
+                self.direction = pygame.math.Vector2(0, 0)
+                move_choice = rand.choice(['up', 'down', 'left', 'right', 'idle'])
+                if move_choice == 'up':
+                    self.direction.y = -1
+                    self.facing = 'up'
+                elif move_choice == 'down':
+                    self.direction.y = 1
+                    self.facing = 'down'
+                elif move_choice == 'left':
+                    self.direction.x = -1
+                    self.facing = 'left'
+                elif move_choice == 'right':
+                    self.direction.x = 1
+                    self.facing = 'right'
+                else:
+                    self.direction.x = 0
+                    self.direction.y = 0
+                self.decision_time = pygame.time.get_ticks()
+                self.movement_decided = True
+            else:
+                current_time = pygame.time.get_ticks()
+                if current_time - self.decision_time > 2000:
+                    self.movement_decided = False
         
         # Move X axis, check collision
         self.hitbox.x += self.direction.x * self.speed

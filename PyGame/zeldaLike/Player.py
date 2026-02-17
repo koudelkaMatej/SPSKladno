@@ -38,9 +38,12 @@ class Player(pygame.sprite.Sprite):
         if not self.death_animation_played:
             self._handle_idle_hp_drain(keys)
             self._handle_movement(keys, walls)
-            self._handle_attack(keys)
+            self._handle_attack_animation(keys)
             self._handle_idle_animation(keys)
+            if self.is_wounded and now - self.wound_effect_start_time < self.wound_effect_duration:
+                self.wound_effect()
         
+
         self._handle_death()
         self._clamp_frame_index()
         self._frame_update()
@@ -84,6 +87,12 @@ class Player(pygame.sprite.Sprite):
             self.animations[animation] = frames
 
 
+
+    def wound_effect(self):
+        if not self.is_wounded :
+            self.is_wounded = True
+            self.hp -= 10
+            self.wound_effect_start_time = pygame.time.get_ticks()
 
     def _is_in_attack_cooldown(self, now: int) -> bool:
         return now - self.last_attack_time < self.attack_cooldown
@@ -132,7 +141,7 @@ class Player(pygame.sprite.Sprite):
         animation_prefix = "run" if self.speed == 5 else "walk"
         self.current_animation = f"{animation_prefix}_{self.facing}" 
 
-    def _handle_attack(self, keys):
+    def _handle_attack_animation(self, keys):
         if not keys[pygame.K_SPACE]:
             return
 

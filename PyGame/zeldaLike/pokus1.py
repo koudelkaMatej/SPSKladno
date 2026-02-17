@@ -56,7 +56,8 @@ while running:
     for enemy in enemy_group:
         draw_hp_bar_enemies(screen, enemy.hp, enemy.rect.centerx-35, enemy.rect.centery+20)
     
-    if player._is_in_attack_cooldown(pygame.time.get_ticks()):
+    # check if player is attacking and collides with enemy
+    if player.attack_animation_played:
         for enemy in enemy_group:
             if player.hitbox.colliderect(enemy.hitbox):
                 enemy.set_damage(player.get_damage())

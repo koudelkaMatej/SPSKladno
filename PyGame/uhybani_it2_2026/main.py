@@ -1,59 +1,40 @@
-# Importing pygame module
 import pygame
-from pygame.locals import *
 
-# initiate pygame and give permission
-# to use pygame's functionality.
 pygame.init()
+clock = pygame.time.Clock()  # pro FPS
+screen = pygame.display.set_mode((400, 600))
 
-# create the display surface object
-# of specific dimension.
-window = pygame.display.set_mode((600, 600))
-
-# Fill the scree with white color
-window.fill((255, 255, 255))
-
-# creating list in which we will store
-# the position of the circle
-circle_positions = []
-
-# radius of the circle
-circle_radius = 60
-
-# Color of the circle
-color = (0, 0, 255)
-
-# Creating a variable which we will use
-# to run the while loop
-run = True
-
-# Creating a while loop
-while run:
-
-    # Iterating over all the events received from
-    # pygame.event.get()
+running = True
+a = 50
+b = 200  # vykreslím a už neměním (statické části)
+vlevo = False
+ball = pygame.image.load('ball_image.png')  # NAČTENÍ OBRÁZKU
+ball = pygame.transform.scale(ball, (40, 40))  # menim velikost obrazku
+rotation_angle = 0
+while running:  # vše co je zde měním dynamicky dle ticku
+    clock.tick(60)  # FPS
+    screen.fill((0, 0, 0))
     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    # Rotate the ball image
+    rotated_ball = pygame.transform.rotate(ball, rotation_angle)
+    ball_rect = rotated_ball.get_rect(center=(a, b))
 
-        # If the type of the event is quit
-        # then setting the run variable to false
-        if event.type == QUIT:
-            run = False
+    screen.blit(rotated_ball, ball_rect)  # vykreslení rotovaného obrázku
+    pygame.draw.line(screen, (255, 102, 0), [25, b+20], [370, b+20], 5)
 
-        # if the type of the event is MOUSEBUTTONDOWN
-        # then storing the current position
-        elif event.type == MOUSEBUTTONDOWN:
-            position = event.pos
-            circle_positions.append(position)
-            
-    # Using for loop to iterate
-    # over the circle_positions
-    # list
-    if len(circle_positions) % 3 == 0:
-    
-        for i in range(0, len(circle_positions), 3):
-            left_corner = circle_positions[i]
-            right_corner = circle_positions[i + 1]
-            pygame.draw.polygon(window, color, [left_corner, right_corner, circle_positions[i + 2]])
+    if vlevo:
+        a -= 1
+        rotation_angle += 15  # Rotate clockwise 
+        if a <= 50:
+            vlevo = False
+    else:
+        a += 1
+        rotation_angle -= 15  # Rotate counterclockwise
+        if a >= 350:
+            vlevo = True
 
-    # Draws the surface object to the screen.
     pygame.display.update()
+
+pygame.quit()

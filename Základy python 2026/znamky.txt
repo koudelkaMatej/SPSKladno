@@ -1,4 +1,0 @@
-Adam 1 2 1 3
-Bára 2 1 1 2
-Cyril 3 2 4 2
-Dana 1 1 1 1

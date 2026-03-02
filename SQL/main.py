@@ -1,5 +1,5 @@
 import mysql.connector
-from pripojeni import *
+from SPSKladno.Testovani.pripojeni import *
 
 <<<<<<< HEAD
 import mysql.connector

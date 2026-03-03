@@ -64,7 +64,7 @@ def settings_menu():
         screen.blit(back_to_menu_text, back_to_menu_text_rect)
 
         pygame.display.flip()
-        clock.tick(FPS)
+        clock.tick(1)
 
 
 ##############################

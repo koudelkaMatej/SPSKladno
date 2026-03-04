@@ -8,14 +8,15 @@ pygame.display.set_caption("Uhybani")
 running = True
 clock = pygame.time.Clock()
 
-hrac = Player(WIDTH // 2, HEIGHT)
+
+hrac = Player()
 hrac_group = pygame.sprite.Group()
 hrac_group.add(hrac)
-blok = Block(WIDTH // 2, 0)
+blok = Block()
 blok_group = pygame.sprite.Group()
 blok_group.add(blok)
 while running:
-    screen.fill(BLACK)
+    screen.fill(WHITE)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -23,6 +24,11 @@ while running:
     hrac_group.draw(screen)
     blok_group.update()
     blok_group.draw(screen)
+
+    if pygame.sprite.spritecollide(hrac, blok_group, True, pygame.sprite.collide_mask):
+        print("KOLIZE!")
+        pygame.time.delay(1000)
+        running = False
 
     pygame.display.update()
     clock.tick(FPS)

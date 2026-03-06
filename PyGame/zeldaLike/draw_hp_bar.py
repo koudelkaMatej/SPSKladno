@@ -15,8 +15,8 @@ def draw_hp_bar(screen, current_hp, max_hp=100):
     else:
         color = RED
 
-    text_font = pygame.font.Font(FONT_NAME, FONT_SIZE)
-    hp_text = text_font.render(f'HP: {current_hp}/{max_hp}', True, WHITE)
+    text_font = pygame.font.SysFont("Segoe UI Emoji", FONT_SIZE)
+    hp_text = text_font.render(f'HP \u2764:  {current_hp}/{max_hp}', True, WHITE)
     screen.blit(hp_text, (50, 25))
     # Draw the background of the HP bar
     pygame.draw.rect(screen, BLACK, (50, 50, HP_BAR_WIDTH, HP_BAR_HEIGHT))

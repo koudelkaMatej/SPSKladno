@@ -10,7 +10,12 @@ class Fireboy(pygame.sprite.Sprite):
         self.animation_index = 0
         self.image = self.animations[self.current_animation][self.animation_index]
         self.rect = self.image.get_rect(bottomleft=(x, y))
-
+        self.image_mask = pygame.mask.from_surface(self.image)
+        self.jumping = False
+        self.jump_velocity = 0
+        self.jump_force = JUMP_FORCE
+        self.on_ground = True
+        
 
     def load_animation_frames(self):
         # idle animation
@@ -44,8 +49,24 @@ class Fireboy(pygame.sprite.Sprite):
             self.rect.x += 5
         else:
             self.current_animation = 'idle'
+        if keys[pygame.K_UP]:
+            if not self.jumping:
+                self.jumping = True
+                self.on_ground = False
+                self.jump_velocity = self.jump_force
 
-        self.image = self.animations[self.current_animation][self.animation_index]
+        if self.jumping or not self.on_ground:
+            self.rect.y += self.jump_velocity
+            self.jump_velocity += GRAVITY
+
+
+
+        self.animation_index += 0.1
+        if self.animation_index >= len(self.animations[self.current_animation]):
+            self.animation_index = 0
+        self.image = self.animations[self.current_animation][int(self.animation_index)]
+        self.image_mask = pygame.mask.from_surface(self.image)
+
 
 
 if __name__ == "__main__":

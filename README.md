@@ -93,7 +93,7 @@ VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V le
 
 ### 8. Naklonování Git repozitáře
 
-V terminálu (PowerShell nebo Git Bash) se přesuň do své složky projektu a naklonuj repozitář:
+V terminálu (PowerShell nebo Git Bash Portable) se přesuň do své složky projektu a naklonuj repozitář:
 
 ```Git Bash Portable
 git clone https://github.com/uzivatel/nazev-repozitare.git .

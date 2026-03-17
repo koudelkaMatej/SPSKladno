@@ -68,7 +68,7 @@ Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings
 
 ### 6. Nastavení Git identity
 
-Otevři terminál **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu) a zadej:
+Otevři terminál **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a zadej:
 
 ```bash
 git config --global user.email "tvuj@email.cz"

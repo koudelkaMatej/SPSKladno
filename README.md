@@ -67,6 +67,32 @@ git config --global user.name "TvujNick"
 
 ---
 
+### 6. Vypnutí Credential Manageru (žádné vyskakovací okno při sync)
+
+Portable Git ve škole používá **Git Credential Manager**, který při každém sync vyskočí s přihlašovacím oknem. Aby se credentials uložily natrvalo a okno už nevyskočilo, zadej v **Git Bash Portable**:
+
+```bash
+git config --global credential.helper store
+```
+
+Při **prvním** git sync/push se tě ještě zeptá na přihlášení – zadej:
+- **Username:** tvůj GitHub username
+- **Password:** tvůj **Personal Access Token** (ne heslo k účtu!)
+
+Od té chvíle se credentials uloží a okno se už **nikdy nezobrazí**.
+
+#### Jak vytvořit Personal Access Token (PAT)
+
+1. Na GitHubu jdi do **Settings → Developer settings → Personal access tokens → Tokens (classic)**
+2. Klikni **Generate new token (classic)**
+3. Zaškrtni oprávnění **repo** (celý blok)
+4. Vygeneruj token a **ihned si ho zkopíruj** (zobrazí se jen jednou)
+5. Tento token použij místo hesla při prvním přihlášení
+
+> ⚠️ Token se uloží jako plain text v souboru `~/.git-credentials`. Ve školním prostředí to je přijatelné řešení.
+
+---
+
 ### Shrnutí pořadí kroků
 
 | # | Co udělat | Kde |
@@ -76,3 +102,4 @@ git config --global user.name "TvujNick"
 | 3 | Aktivovat venv | PowerShell terminál |
 | 4 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
 | 5 | Nastavit Git identitu | Git Bash Portable terminál |
+| 6 | Vypnout Credential Manager | Git Bash Portable terminál |

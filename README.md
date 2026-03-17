@@ -73,6 +73,7 @@ Otevři terminál **Git Bash Portable** (v dolní liště VS Code vyber profil t
 ```bash
 git config --global user.email "tvuj@email.cz"
 git config --global user.name "TvujNick"
+git config --global credential.helper store
 ```
 
 > 🔁 Nahraď `"tvuj@email.cz"` a `"TvujNick"` svými skutečnými údaji (např. z GitHubu).

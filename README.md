@@ -93,6 +93,7 @@ Od té chvíle se credentials uloží a okno se už **nikdy nezobrazí**.
 
 ---
 
+
 ### Shrnutí pořadí kroků
 
 | # | Co udělat | Kde |

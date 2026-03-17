@@ -6,7 +6,19 @@ Ve škole je Python, Git i VS Code nainstalováno jako **portable verze na serve
 
 ---
 
-### 1. Vytvoření virtuálního prostředí (venv)
+### 1. Vytvoření a otevření složky projektu
+
+Nejdřív si vytvoř složku pro svůj projekt (např. na ploše nebo na disku) a otevři ji ve VS Code:
+
+1. **File → Open Folder…** (`Ctrl + K, Ctrl + O`)
+2. Vyber nebo vytvoř novou složku pro svůj projekt
+3. Potvrď otevření složky
+
+> 💡 Vždy pracuj v otevřené složce – VS Code tak správně rozpozná projekt, Git i virtuální prostředí.
+
+---
+
+### 2. Vytvoření virtuálního prostředí (venv)
 
 V terminálu VS Code spusť:
 
@@ -14,7 +26,7 @@ V terminálu VS Code spusť:
 & "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
 ```
 
-### 2. Povolení spouštění skriptů
+### 3. Povolení spouštění skriptů
 
 Školní politika může blokovat aktivaci venv. Povol spouštění skriptů:
 
@@ -22,7 +34,7 @@ V terminálu VS Code spusť:
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
-### 3. Aktivace virtuálního prostředí
+### 4. Aktivace virtuálního prostředí
 
 ```powershell
 .\venv\Scripts\activate
@@ -30,7 +42,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 ---
 
-### 4. Nastavení VS Code (settings.json)
+### 5. Nastavení VS Code (settings.json)
 
 Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings (JSON)"** a vlož následující konfiguraci:
 
@@ -54,7 +66,7 @@ Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings
 
 ---
 
-### 5. Nastavení Git identity
+### 6. Nastavení Git identity
 
 Otevři terminál **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu) a zadej:
 
@@ -67,7 +79,7 @@ git config --global user.name "TvujNick"
 
 ---
 
-### 6. Instalace rozšíření (Extensions)
+### 7. Instalace rozšíření (Extensions)
 
 VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj:
 
@@ -82,9 +94,10 @@ VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V le
  
 | # | Co udělat | Kde |
 |---|-----------|-----|
-| 1 | Vytvořit venv | PowerShell terminál |
-| 2 | Povolit spouštění skriptů | PowerShell terminál |
-| 3 | Aktivovat venv | PowerShell terminál |
-| 4 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
-| 5 | Nastavit Git identitu | Git Bash Portable terminál |
-| 6 | Nainstalovat rozšíření Python + Jupyter | VS Code – Extensions |
+| 1 | Vytvořit a otevřít složku projektu | VS Code – File → Open Folder |
+| 2 | Vytvořit venv | PowerShell terminál |
+| 3 | Povolit spouštění skriptů | PowerShell terminál |
+| 4 | Aktivovat venv | PowerShell terminál |
+| 5 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
+| 6 | Nastavit Git identitu | Git Bash Portable terminál |
+| 7 | Nainstalovat rozšíření Python + Jupyter | VS Code – Extensions |

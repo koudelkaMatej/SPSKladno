@@ -67,6 +67,17 @@ git config --global user.name "TvujNick"
 
 ---
 
+### 6. Instalace rozšíření (Extensions)
+
+VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj:
+
+- **Python** (`ms-python.python`) – podpora pro Python (IntelliSense, linting, debugging)
+- **Jupyter** (`ms-toolsai.jupyter`) – podpora pro Jupyter notebooky (.ipynb)
+
+> 💡 Stačí do vyhledávání zadat „Python" nebo „Jupyter" a nainstalovat rozšíření od **Microsoftu**.
+
+---
+
 ### Shrnutí pořadí kroků
  
 | # | Co udělat | Kde |
@@ -76,3 +87,4 @@ git config --global user.name "TvujNick"
 | 3 | Aktivovat venv | PowerShell terminál |
 | 4 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
 | 5 | Nastavit Git identitu | Git Bash Portable terminál |
+| 6 | Nainstalovat rozšíření Python + Jupyter | VS Code – Extensions |

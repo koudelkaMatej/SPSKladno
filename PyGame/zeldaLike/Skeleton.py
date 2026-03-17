@@ -13,7 +13,7 @@ class Skeleton(Player):
         self.rect = self.image.get_rect(center=(x, y))
         self.hitbox = pygame.Rect(0, 0, TILE_SIZE, TILE_SIZE)  # smaller collision box
         self.hitbox.midbottom = self.rect.midbottom
-        self.speed = 1
+        self.speed = 10
         self.hp = 50
         self.movement_decided = False
         self.decision_time = 0

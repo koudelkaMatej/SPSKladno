@@ -90,6 +90,25 @@ VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V le
 
 ---
 
+### 8. Naklonování Git repozitáře
+
+V terminálu (PowerShell nebo Git Bash) se přesuň do své složky projektu a naklonuj repozitář:
+
+```Git Bash Portable
+git clone https://github.com/uzivatel/nazev-repozitare.git .
+```
+
+> ⚠️ Tečka `.` na konci znamená, že se obsah naklonuje **přímo do aktuální složky** (nevytvoří se podsložka).
+
+Případně můžeš klonovat přes VS Code:
+1. Otevři příkazovou paletu (`Ctrl + Shift + P`)
+2. Zadej **"Git: Clone"**
+3. Vlož URL repozitáře a vyber cílovou složku
+
+> 🔁 Nahraď `https://github.com/uzivatel/nazev-repozitare.git` skutečnou URL svého repozitáře z GitHubu.
+
+---
+
 ### Shrnutí pořadí kroků
  
 | # | Co udělat | Kde |
@@ -101,3 +120,4 @@ VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V le
 | 5 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
 | 6 | Nastavit Git identitu | Git Bash Portable terminál |
 | 7 | Nainstalovat rozšíření Python + Jupyter | VS Code – Extensions |
+| 8 | Naklonovat Git repozitář | Terminál nebo VS Code – Git: Clone |

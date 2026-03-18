@@ -57,7 +57,7 @@ VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V le
 
 ---
 
-## Část B – Pro každý nový projekt (i po restartu PC)
+## Část B – Pro každý nový projekt (nebo po restartu PC)
 
 ### 4. Vytvoření a otevření složky projektu
 

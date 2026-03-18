@@ -1,0 +1,21 @@
+import pygame
+pygame.init()
+#Menu 
+menu_font = pygame.font.SysFont("Arial", 50)
+title_text = menu_font.render("SPACE INVADERS", True, (255, 255, 255),(255,0,0))
+title_rect = title_text.get_rect(center=(400, 50))
+play_text = menu_font.render("PLAY", True, (255, 255, 255),(255,0,0))
+play_rect = play_text.get_rect(center=(400, 200))
+settings_text = menu_font.render("SETTINGS", True, (255, 255, 255),(255,0,0))
+settings_rect = settings_text.get_rect(center=(400, 300))
+quit_text = menu_font.render("QUIT", True, (255, 255, 255),(255,0,0))
+quit_rect = quit_text.get_rect(center=(400, 400))
+#settings Menu 
+res800_text = menu_font.render("800x600", True, (255, 255, 255),(255,0,0))
+res1024_text = menu_font.render("1024x768", True, (255, 255, 255),(255,0,0))
+res1280_text = menu_font.render("1280x960", True, (255, 255, 255),(255,0,0))
+res800_rect = res800_text.get_rect(center=(400, 200))
+res1024_rect = res1024_text.get_rect(center=(400, 300))
+res1280_rect = res1280_text.get_rect(center=(400, 400))
+back_text = menu_font.render("BACK", True, (255, 255, 255),(255,0,0))
+back_rect = back_text.get_rect(center=(400, 500))

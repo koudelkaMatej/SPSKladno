@@ -1,4 +1,5 @@
 import pygame
+import settings
 from settings import *
 import random
 class Block(pygame.sprite.Sprite):
@@ -9,11 +10,11 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.image.load(BLOCK_IMAGE_PATH).convert_alpha()
         self.image = pygame.transform.scale(self.image, (BLOCK_WIDTH, BLOCK_HEIGHT))
         self.rect = self.image.get_rect(bottom=y, centerx=x) # center = (x,y)¨
-        self.speed = BLOCK_SPEED
+        self.speed = settings.BLOCK_SPEED
 
     def update(self):
         self.rect.y += self.speed
-        if self.rect.top > HEIGHT:
+        if self.rect.top > HEIGHT+100:
             self.kill()
 
 if __name__ == "__main__":

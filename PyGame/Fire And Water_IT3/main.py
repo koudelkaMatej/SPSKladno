@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from Level import Level
 from Fireboy import Fireboy
+from WaterGirl import WaterGirl
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Fire and Water Game")
@@ -11,8 +12,10 @@ clock = pygame.time.Clock()
 
 level = Level()
 fireboy = Fireboy(100, 760)
+watergirl = WaterGirl(300, 760)
 players_group = pygame.sprite.Group()
 players_group.add(fireboy)
+players_group.add(watergirl)
 
 running = True
 while running:
@@ -24,15 +27,20 @@ while running:
     players_group.update()
     players_group.draw(screen)
     level.draw_level(screen)
-    if fireboy.rect.collidelist(level.dirt_list) != -1:
-        
-        fireboy.rect.bottom = level.dirt_list[fireboy.rect.collidelist(level.dirt_list)].top
-        fireboy.jumping = False
-        fireboy.jump_velocity = 0
-        fireboy.on_ground = True
-    if fireboy.rect.collidelist(level.dirt_list) == -1:
-        fireboy.on_ground = False
-        
+    #collision detection between players and dirt tiles 
+    for player in players_group:
+        if player.rect.collidelist(level.dirt_list) != -1: 
+            if player.jump_velocity < 0:  # ceiling collision
+                player.rect.top = level.dirt_list[player.rect.collidelist(level.dirt_list)].bottom
+                player.jump_velocity = 0
+            else:
+                player.rect.bottom = level.dirt_list[player.rect.collidelist(level.dirt_list)].top
+                player.on_ground = True
+        else:
+            player.on_ground = False   
+    # collision with dirt ceiling
+
+
 
     pygame.display.flip()
     clock.tick(FPS)

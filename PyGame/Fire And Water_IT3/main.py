@@ -38,7 +38,11 @@ while running:
                 player.on_ground = True
         else:
             player.on_ground = False   
-    # collision with dirt ceiling
+        if player.rect.collidelist(level.lava_list) != -1:
+            player.check_lava_collision(level)
+            player.check_water_collision(level)
+            running = player.water_lava_interaction(level)
+
 
 
 

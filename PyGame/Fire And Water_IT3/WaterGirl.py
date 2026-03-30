@@ -7,7 +7,12 @@ class WaterGirl(Fireboy):
         super().__init__(x, y)
         self.idle_path = WATERGIRL_IDLE_IMAGE_PATH
         self.right_path = WATERGIRL_RIGHT_IMAGE_PATH
+        self.scale = WATERGIRL_SCALE
         self.load_animation_frames()
+        self.water = True  # watergirl can pass through lava but not water
+        self.lava = False  # watergirl cannot pass
+        self.on_water = False  # track if watergirl is currently in water
+        self.on_lava = False  # track if watergirl is currently in lava
     
     def _movement(self):
         keys = pygame.key.get_pressed()

@@ -14,6 +14,7 @@ LEVEL_PATH = "Assets/Levels/level{}.csv"
 TILE_SIZE = 40
 DIRT_IMAGE_PATH = "Assets/Images/dirt.png"
 LAVA_IMAGE_PATH = "Assets/ohen a voda/lava/1.png"
+WATER_IMAGE_PATH = "Assets/ohen a voda/voda/1.png"
 
 #fireboy settings
 FIREBOY_IDLE_IMAGE_PATH = "Assets/ohen a voda/boy_still/{}.png"
@@ -25,5 +26,5 @@ JUMP_FORCE = -12
 #watergirl settings
 WATERGIRL_IDLE_IMAGE_PATH = "Assets/ohen a voda/girl_still/{}.png"
 WATERGIRL_RIGHT_IMAGE_PATH = "Assets/ohen a voda/girl_right/{}.png"
-WATERGIRL_SCALE = 1
+WATERGIRL_SCALE = 0.18
 

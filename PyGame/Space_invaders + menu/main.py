@@ -1,13 +1,16 @@
 import pygame
 import settings
-from Player import Player
+from Player import *
+from Enemy import *
 pygame.init()
 
 screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 pygame.display.set_caption("Space Invaders")
 running = True
-
+clock = pygame.time.Clock()
 player_group = pygame.sprite.Group()
+enemy_group = pygame.sprite.Group()
+bullet_group = pygame.sprite.Group()
 
 def vypis_menu():
     screen.fill((0, 0, 127))
@@ -26,6 +29,10 @@ def vypis_hru():
     screen.fill((0, 0, 0))
     player_group.update()
     player_group.draw(screen)
+    enemy_group.update()
+    enemy_group.draw(screen)
+    bullet_group.update()
+    bullet_group.draw(screen)
 
 state = "MENU"   # MENU, PLAYING, PAUSED, GAME_OVER
 while running:
@@ -38,6 +45,7 @@ while running:
                     state = "PLAYING"
                     player = Player()  # vytvoření hráče
                     player_group.add(player)
+                    enemy_group.add(*[Enemy(x*100, 50) for x in range(5)])  # vytvoření nepřátel
                     for i in range(3):
                         screen.fill((0, 0, 0))
                         text = settings.menu_font.render(f"Starting in {3-i}...", True, (255, 255, 255))
@@ -74,4 +82,5 @@ while running:
         # zobrazení skóre, restart
         pass
     pygame.display.flip()
+    clock.tick(settings.FPS)
 pygame.quit()

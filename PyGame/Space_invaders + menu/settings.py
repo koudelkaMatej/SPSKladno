@@ -6,10 +6,23 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
 FPS = 60
 
 #player settings
-PLAYER_SPEED = 1
+PLAYER_SPEED = 5
 PLAYER_IMAGE_PATH = "obrazky/spaceship1.png"
 PLAYER_SCALE = 0.08
 
+#enemy settings
+ENEMY_SPEED = 2
+ENEMY_IMAGE_PATH = "obrazky/alien{}.png"
+ENEMY_SCALE = 0.75
+ENEMY_DROP = 20
+
+#bullet settings
+BULLET_SPEED = 10
+BULLET_IMAGE_PATH = "obrazky/bullet.png"
+
+#enemy bullet settings
+ENEMY_BULLET_SPEED = 5
+ENEMY_BULLET_IMAGE_PATH = "obrazky/alien_bullet.png"
 
 #Menu texts
 menu_font = pygame.font.SysFont("Arial", 50)

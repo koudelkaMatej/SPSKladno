@@ -23,6 +23,8 @@ BULLET_IMAGE_PATH = "obrazky/bullet.png"
 #enemy bullet settings
 ENEMY_BULLET_SPEED = 5
 ENEMY_BULLET_IMAGE_PATH = "obrazky/alien_bullet.png"
+ENEMY_SHOOT_CHANCE = 50  # percentage chance to shoot each update
+ENEMY_DROP_SPEED = 10
 
 #Menu texts
 menu_font = pygame.font.SysFont("Arial", 50)

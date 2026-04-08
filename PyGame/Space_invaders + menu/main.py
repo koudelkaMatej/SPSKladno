@@ -33,6 +33,27 @@ def vypis_hru():
     enemy_group.draw(screen)
     bullet_group.update()
     bullet_group.draw(screen)
+    player.bullet_group.update()
+    player.bullet_group.draw(screen)
+    for enemy in enemy_group:
+        enemy.bullet_group.update()
+        enemy.bullet_group.draw(screen)
+    
+    for bullet in player.bullet_group:
+        if pygame.sprite.spritecollide(bullet, enemy_group, True):
+            bullet.kill()
+    
+    for enemy in enemy_group:
+        if pygame.sprite.spritecollide(enemy, player_group, False):
+            enemy.kill()
+            player.kill()
+    
+    for enemy in enemy_group:
+        for bullet in enemy.bullet_group:
+            if pygame.sprite.spritecollide(bullet, player_group, False):
+                bullet.kill()
+                player.kill()
+                state = "GAME_OVER"
 
 state = "MENU"   # MENU, PLAYING, PAUSED, GAME_OVER
 while running:
@@ -72,6 +93,10 @@ while running:
                     settings.update_rects()
                 elif settings.back_rect.collidepoint(event.pos):
                     state = "MENU"
+        if state == "PLAYING":
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    player.shoot()
     if state == "MENU":
         vypis_menu()
     elif state == "PLAYING":

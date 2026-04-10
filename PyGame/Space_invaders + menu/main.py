@@ -25,20 +25,24 @@ def vypis_settings():
     screen.blit(settings.res1280_text, settings.res1280_rect)
     screen.blit(settings.back_text, settings.back_rect)
 
-def vypis_hru():
-    screen.fill((0, 0, 0))
+def update_all_sprites():
     player_group.update()
-    player_group.draw(screen)
     enemy_group.update()
-    enemy_group.draw(screen)
     bullet_group.update()
-    bullet_group.draw(screen)
     player.bullet_group.update()
-    player.bullet_group.draw(screen)
     for enemy in enemy_group:
         enemy.bullet_group.update()
+
+def draw_all_sprites():
+    player_group.draw(screen)
+    enemy_group.draw(screen)
+    bullet_group.draw(screen)
+    player.bullet_group.draw(screen)
+    for enemy in enemy_group:
         enemy.bullet_group.draw(screen)
-    
+
+def check_collisions():
+    global state
     for bullet in player.bullet_group:
         if pygame.sprite.spritecollide(bullet, enemy_group, True):
             bullet.kill()
@@ -54,6 +58,12 @@ def vypis_hru():
                 bullet.kill()
                 player.kill()
                 state = "GAME_OVER"
+
+def vypis_hru():
+    screen.fill((0, 0, 0))
+    update_all_sprites()
+    draw_all_sprites()
+    check_collisions()
 
 state = "MENU"   # MENU, PLAYING, PAUSED, GAME_OVER
 while running:

@@ -52,19 +52,12 @@ projekt_kopie_backup.py                  ├── verze 3 (oprava bugu)
 2. Stiskni `Ctrl + Shift + P` (otevře se příkazová paleta nahoře)
 3. Napiš **"Open User Settings (JSON)"** a klikni na výsledek
 
-```
-┌──────────────────────────────────────────────────┐
-│  > Open User Settings (JSON)                     │  ← klikni sem
-│    Open User Settings                            │
-│    Open Workspace Settings (JSON)                │
-└──────────────────────────────────────────────────┘
-```
 
-<!-- 📸 Screenshot: Příkazová paleta s "Open User Settings (JSON)" -->
-<!-- ![Příkazová paleta - Open User Settings](images/cmd_palette_settings.png) -->
+![Příkazová paleta - Open User Settings](user_settings.png)
 
 4. Do otevřeného souboru vlož tuto konfiguraci:
 
+![Příkazová paleta - Open User Settings](user_settings_JSON.png)
 ```json
 {
   "terminal.integrated.profiles.windows": {
@@ -88,21 +81,8 @@ projekt_kopie_backup.py                  ├── verze 3 (oprava bugu)
 1. V dolní liště VS Code klikni na šipku vedle **+** u terminálu
 2. Vyber **Git Bash Portable**
 
-```
-┌─────────────────────────────────────────────┐
-│ TERMINAL                                    │
-│─────────────────────────────────────────────│
-│  ▾ pwsh    ▾ Git Bash Portable    +   ▾     │
-│                                  ↑     ↑    │
-│                          nový  ──┘     │    │
-│                          terminál      │    │
-│                                        │    │
-│                    výběr typu ─────────┘    │
-└─────────────────────────────────────────────┘
-```
 
-<!-- 📸 Screenshot: Výběr profilu terminálu ve VS Code (šipka vedle +) -->
-<!-- ![Výběr terminálu](images/terminal_profile_select.png) -->
+![Git Bash Portable Terminál](git_bash.png)
 
 3. Zadej tyto příkazy (nahraď svými údaji z GitHubu):
 
@@ -123,11 +103,15 @@ Stiskni `Ctrl + Shift + X` a nainstaluj:
 
 ---
 
+![Extensions](extensions.png)
+
 ### Kroky pro každý nový projekt / po restartu PC (Část B)
 
 #### 2.4 Povolení spouštění skriptů
 
 Školní politika toto nastavení resetuje po restartu. V **PowerShell** terminálu spusť:
+
+![Terminál pro přípravu venv](priprava_venv.png)
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
@@ -142,7 +126,6 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 # Aktivace venv
 .\venv\Scripts\activate
 ```
-
 ---
 
 ## 3. Základní pojmy
@@ -161,11 +144,11 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ### Jak Git funguje – tři oblasti
 
 ```
-┌─────────────────┐     git add      ┌─────────────────┐    git commit    ┌─────────────────┐
-│   Working Dir    │ ───────────────► │  Staging Area    │ ──────────────► │   Repository     │
-│ (tvé soubory)    │                  │ (připraveno ke   │                 │ (historie)       │
-│                  │                  │     commitu)     │                 │                  │
-└─────────────────┘                  └─────────────────┘                 └─────────────────┘
+┌──────────────────┐     git add      ┌─────────────────┐    git commit   ┌─────────────────┐
+│   Working Dir    │ ───────────────► │  Staging Area   │ ──────────────► │   Repository    │
+│ (tvé soubory)    │                  │ (připraveno ke  │                 │   (historie)    │
+│                  │                  │     commitu)    │                 │                 │
+└──────────────────┘                  └─────────────────┘                 └─────────────────┘
         ▲                                                                        │
         │                          git checkout / restore                        │
         └────────────────────────────────────────────────────────────────────────┘
@@ -193,42 +176,9 @@ git init
 ### Přes VS Code
 
 1. Otevři složku projektu: **File → Open Folder** (`Ctrl + K, Ctrl + O`)
-2. Klikni na ikonu **Source Control** v levém panelu (třetí ikona – vypadá jako rozvětvení)
+2. Použij zkratku `Ctrl + Shift + P` pro otevření příkazové palety a napiš **"Git: Initialize Repository"**
 
-```
-┌──────┐
-│ 📁   │  Explorer
-│      │
-│ 🔍   │  Search
-│      │
-│ ○─○  │  Source Control  ← KLIKNI SEM
-│ └─○  │
-│      │
-│ 🐛   │  Debug
-└──────┘
-```
-
-<!-- 📸 Screenshot: Levý panel VS Code s ikonou Source Control -->
-<!-- ![Source Control ikona](images/vscode_source_control_icon.png) -->
-
-3. Klikni na tlačítko **"Initialize Repository"**
-
-```
-┌─────────────────────────────────────┐
-│ SOURCE CONTROL                      │
-│                                     │
-│  Ke správě zdrojového kódu není     │
-│  otevřen žádný repozitář.           │
-│                                     │
-│  ┌─────────────────────────────┐    │
-│  │  Initialize Repository      │    │  ← KLIKNI SEM
-│  └─────────────────────────────┘    │
-│                                     │
-└─────────────────────────────────────┘
-```
-
-<!-- 📸 Screenshot: Tlačítko "Initialize Repository" v Source Control panelu -->
-<!-- ![Initialize Repository](images/vscode_init_repo.png) -->
+![git Initialize Repository](git_init.png)
 
 > 💡 Tímto se ve složce vytvoří skrytá složka `.git`, která obsahuje veškerou historii.
 
@@ -251,6 +201,10 @@ git clone https://github.com/uzivatel/nazev-repozitare.git .
 > ⚠️ Tečka `.` na konci = obsah se naklonuje **přímo do aktuální složky** (nevytvoří se podsložka).
 
 ### Přes VS Code
+
+![Terminál pro přípravu venv](source_control.png)
+
+**NEBO**
 
 1. Stiskni `Ctrl + Shift + P`
 2. Napiš **"Git: Clone"**
@@ -327,8 +281,7 @@ git commit -m "Přidána funkce pro výpočet průměru"
 └──────────────────────────────────────────────────┘
 ```
 
-<!-- 📸 Screenshot: Source Control panel se staged/unstaged soubory a commit zprávou -->
-<!-- ![Source Control - commit](images/vscode_source_control_commit.png) -->
+![Source Control - commit](git_commit.png)
 
 ### Conventional Commits – norma pro commit zprávy
 

@@ -400,7 +400,7 @@ Nebo jednoduše klikni na ikonu **Sync Changes** (synchronizovat změny), která
 ```
 
 <!-- 📸 Screenshot: Tlačítko "Sync Changes" v Source Control panelu -->
-<!-- ![Sync Changes](images/vscode_sync_changes.png) -->
+![Sync Changes](git_sync_changes.png)
 
 ---
 

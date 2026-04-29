@@ -113,7 +113,13 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_LSHIFT]:
             self.speed = 5
 
-        # --- Move X axis first, check collision, resolve ---
+        self._handle_x_movement(keys, walls)
+        self._handle_y_movement(keys, walls)
+        self._update_movement_animation()
+        self.rect.center = (self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y)
+
+    def _handle_x_movement(self, keys, walls):
+        """Handle horizontal movement and collision."""
         if keys[pygame.K_LEFT]:
             self.hitbox.x -= self.speed
             self.facing = "left"
@@ -128,7 +134,8 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_RIGHT]:
                 self.hitbox.x -= self.speed
 
-        # --- Move Y axis, check collision, resolve ---
+    def _handle_y_movement(self, keys, walls):
+        """Handle vertical movement and collision."""
         if keys[pygame.K_UP]:
             self.hitbox.y -= self.speed
             self.facing = "up"
@@ -143,42 +150,31 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_DOWN]:
                 self.hitbox.y -= self.speed
 
-        self._update_movement_animation()
-        self.rect.center = (self.hitbox.centerx, self.hitbox.centery - self.hitbox_offset_y)
-
     def _update_movement_animation(self):
         """Update animation based on current speed and facing direction."""
         animation_prefix = "run" if self.speed == 5 else "walk"
         self.current_animation = f"{animation_prefix}_{self.facing}" 
 
+    def _get_attack_animation_name(self, attack_type):
+        """Return the animation name based on attack type and facing direction."""
+        return f"{attack_type}_{self.facing}"
+
+    def _start_attack(self):
+        """Initialize common attack properties."""
+        self.attack_animation_played = True
+        self.last_attack_time = pygame.time.get_ticks()
+        self.current_frame = 0
+
     def _handle_attack_animation(self, keys):
         if keys[pygame.K_SPACE]:
-            self.attack_animation_played = True
-            self.last_attack_time = pygame.time.get_ticks()
-            self.current_frame = 0
-            if self.facing == "down":
-                self.current_animation = "slash_down"
-            elif self.facing == "up":
-                self.current_animation = "slash_up"
-            elif self.facing == "left":
-                self.current_animation = "slash_left"
-            elif self.facing == "right":
-                self.current_animation = "slash_right"
+            self._start_attack()
+            self.current_animation = self._get_attack_animation_name("slash")
         elif keys[pygame.K_t]:
             if self.stamina < self.thrust_stamina_cost:
                 return  # not enough stamina, do nothing
             self.stamina -= self.thrust_stamina_cost
-            self.attack_animation_played = True
-            self.last_attack_time = pygame.time.get_ticks()
-            self.current_frame = 0
-            if self.facing == "down":
-                self.current_animation = "thrust_down"
-            elif self.facing == "up":
-                self.current_animation = "thrust_up"
-            elif self.facing == "left":
-                self.current_animation = "thrust_left"
-            elif self.facing == "right":
-                self.current_animation = "thrust_right"
+            self._start_attack()
+            self.current_animation = self._get_attack_animation_name("thrust")
 
     def _handle_death(self):
         if self.hp <= 0 and not self.death_animation_played:

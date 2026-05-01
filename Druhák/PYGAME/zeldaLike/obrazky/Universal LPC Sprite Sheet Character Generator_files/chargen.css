@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button {
+  padding: revert;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+.zoomed {
+  zoom: 2;
+}
+
+body {
+  margin: 10px 15px;
+  min-width: 1280px;
+  font-size: 10pt;
+  font-family: monospace;
+}
+
+header {
+  width: 640px;
+}
+
+h1 {
+  margin: 10px 0px;
+}
+
+h2 {
+  margin: 10px 0px;
+
+}
+
+h3 {
+  font-size: 1em;
+  margin: 4px 0px 0px 0px;
+}
+
+p {
+  margin: 10px 0px;
+}
+
+.subtitle {
+  padding-left: 50px;
+}
+
+#save {
+  width: 60%;
+  min-width: 832px;
+  margin: 40px 0;
+  float: right;
+  padding-left: 15px;
+}
+
+#source {
+  width: 30%;
+  min-width: 200px;
+  margin: 40px 0;
+  clear: both;
+  float: left;
+  font-size: larger;
+}
+
+#credits {
+  width: 100%;
+  clear: both;
+}
+
+#advanced {
+  float: left;
+}
+
+input[type=button], input[type=reset] {
+  padding: 2px 1em;
+}
+
+#previewAnimationsBox {
+  margin-bottom: -64px;
+}
+
+#customizeChar {
+  width: 35%;
+  clear: none;
+  float: left;
+}
+
+#chooser {
+  width: 100%;
+  overflow-y: auto;
+  min-width: 200px;
+  float: left;
+}
+
+#preview {
+  width: 60%;
+  min-width: 832px;
+  float: right;
+}
+
+.instr {
+
+}
+
+#chooser p.instr {
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+#preview p.instr {
+  padding: 10px;
+  margin: 12px 6px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+#chooser>ul {
+  border-left: solid 1px silver;
+  padding-left: 0.5em;
+  margin-left: 0.5em;
+}
+
+#chooser ul>li>span {
+  cursor: pointer;
+}
+
+#chooser ul>li>.condensed:after {
+  padding-left: 10px;
+  content: '\25B6';
+}
+
+#chooser ul>li>.expanded:after, #chooser .condensed:hover:after {
+  padding-left: 10px;
+  content:  '\25BC';
+}
+
+.condensed:hover, .expanded:hover {
+  text-decoration: underline;
+}
+
+
+.search-result {
+  background-color: yellow;
+}
+
+#chooser>ul ul {
+  display: none;
+  margin-left: 0.5em;
+  border-left:  solid 1px silver;
+  padding-left: 0.5em;
+}
+
+#chooser ul.hasPreview {
+  text-indent: 0;
+}
+
+#chooser li.hasPreview {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 3px;
+  margin-left: 0;
+  margin-right: 0;
+  text-indent: 0;
+  border: solid 1px transparent;
+  border-radius: 3px;
+}
+
+#chooser li.hasPreview:hover {
+  border-color: silver;
+}
+
+li.hasPreview canvas {
+  display: block;
+}
+
+#chooser.compact canvas {
+  display:  inline-block;
+  width: 32px;
+  vertical-align:  middle;
+}
+
+#customizeChar .buttons {
+  display: block;
+  margin: 50px 0;
+}
+
+.control-label {
+  font-weight: bold;
+}
+
+label[for="displayMode-compact"] {
+  display: inline-block;
+}
+
+#creditsText {
+  width: 100%;
+}
+
+#github {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+a {
+  border: 0;
+}

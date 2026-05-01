@@ -1,0 +1,7 @@
+& "g:/win32app/Portable Python-3.10.5 x64/App/Python/python.exe" -m venv venv
+
+Set-ExecutionPolicy -Scope CurrentUser 
+
+poté zadej 0
+
+.\venv\Scripts\activate

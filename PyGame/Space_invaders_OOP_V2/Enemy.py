@@ -15,6 +15,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shooting_cooldown = rand.randint(1000,5000)
         self.last_shooting_time = pygame.time.get_ticks()
         self.shoot_timer = 0
+        self.hp = 1
     def update(self):
         if self.direction == 1:
             self.rect.move_ip(self.speed,0)

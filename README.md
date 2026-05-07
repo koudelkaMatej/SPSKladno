@@ -1,4 +1,4 @@
-# SPSKladno
+# SPSKladno Pro učitele
 
 ## Nastavení VS Code a GIT ve školním prostředí
 

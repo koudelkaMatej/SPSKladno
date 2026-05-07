@@ -94,7 +94,7 @@ git config --global user.name "TvujNick"
 git config --global credential.helper store
 ```
 
-> 🔑 `credential.helper store` uloží tvé přihlašovací údaje, abys je nemusel/a zadávat pokaždé.
+> 🔑 `credential.helper store` uloží tvé přihlašovací údaje, abys je nemusel/a zadávat pokaždé. Občas, ale nefunguje a bude nutné zadávat `manager a select`.
 
 #### 2.3 Instalace rozšíření
 
@@ -107,7 +107,7 @@ Stiskni `Ctrl + Shift + X` a nainstaluj:
 
 ![Extensions](extensions.png)
 
-### Kroky pro každý nový projekt / po restartu PC (Část B)
+### Kroky pro každý nový projekt / instalace knihovny / po restartu PC (Část B)
 
 #### 2.4 Povolení spouštění skriptů
 
@@ -211,15 +211,8 @@ git clone https://github.com/uzivatel/nazev-repozitare.git .
 1. Stiskni `Ctrl + Shift + P`
 2. Napiš **"Git: Clone"**
 
-```
-┌──────────────────────────────────────────────────┐
-│  > Git: Clone                                    │  ← vyber tuto možnost
-│    Git: Clone (Recursive)                        │
-└──────────────────────────────────────────────────┘
-```
 
-<!-- 📸 Screenshot: Příkazová paleta s "Git: Clone" -->
-<!-- ![Git Clone v paletě](images/cmd_palette_git_clone.png) -->
+![Git Clone v paletě](git_clone.png)
 
 3. Vlož URL repozitáře z GitHubu
 4. Vyber cílovou složku na disku
@@ -374,32 +367,13 @@ Po commitu se ve spodní liště VS Code zobrazí šipky vedle názvu větve:
 1. Klikni na **⋯** (tři tečky) v Source Control panelu
 2. Vyber **Push**
 
-```
-┌──────────────────────────────┐
-│ SOURCE CONTROL           ⋯   │  ← klikni na tři tečky
-│                              │
-│  ┌────────────────────────┐  │
-│  │  Pull                  │  │
-│  │  Push                  │  │  ← vyber Push
-│  │  Clone                 │  │
-│  │  Fetch                 │  │
-│  │  ...                   │  │
-│  └────────────────────────┘  │
-└──────────────────────────────┘
-```
 
-<!-- 📸 Screenshot: Rozbalovací menu (⋯) v Source Control panelu s možností Push -->
-<!-- ![Source Control menu - Push](images/vscode_sc_menu_push.png) -->
+
+![Source Control menu - Push](git_source_3_tecky.png)
 
 Nebo jednoduše klikni na ikonu **Sync Changes** (synchronizovat změny), která provede pull + push najednou:
 
-```
-┌──────────────────────────────────────────┐
-│  ┌──────────────────────────────┐        │
-│  │  🔄 Sync Changes  ↑1 ↓0     │        │  ← klikni pro synchronizaci
-│  └──────────────────────────────┘        │
-└──────────────────────────────────────────┘
-```
+
 
 <!-- 📸 Screenshot: Tlačítko "Sync Changes" v Source Control panelu -->
 ![Sync Changes](git_sync_changes.png)
@@ -567,41 +541,16 @@ git branch -d nova-funkce
 
 #### Vytvoření a přepnutí větve
 
-1. Klikni na **název větve** v levém dolním rohu (např. `main`)
+1. Klikni na **název větve** v levém dolním rohu (např. `main`) nebo v Source control viz obrázek.
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│  ○─○  main                    │  Ln 15, Col 4  │  UTF-8     │
-│  └─○  ↑                      │                 │            │
-│       └── KLIKNI SEM          │                 │            │
-└──────────────────────────────────────────────────────────────┘
-```
-
-<!-- 📸 Screenshot: Název větve v levém dolním rohu VS Code -->
-<!-- ![Název větve ve status baru](images/vscode_branch_statusbar.png) -->
+![Název větve ve status baru](create_branch.png) 
 
 2. Zobrazí se nabídka:
 
-```
-┌───────────────────────────────────────────────┐
-│  > nova-funkce                                │  ← napiš název nové větve
-│                                               │
-│  ┌─────────────────────────────────────────┐  │
-│  │ + Create new branch...                  │  │  ← vytvoř novou větev
-│  │ + Create new branch from...             │  │
-│  │ ────────────────────────────────────     │  │
-│  │   main                                  │  │  ← nebo přepni na existující
-│  │   origin/main                           │  │
-│  │   feature/login                         │  │
-│  └─────────────────────────────────────────┘  │
-└───────────────────────────────────────────────┘
-```
-
-<!-- 📸 Screenshot: Výběr/vytvoření větve po kliknutí na název větve -->
-<!-- ![Výběr větve](images/vscode_branch_picker.png) -->
-
 3. Vyber **"Create new branch..."** a zadej název (např. `feature/kalkulacka`)
 4. VS Code tě automaticky přepne na novou větev
+
+Na obrázku jsou již vidět existující větve.
 
 ### Konvence pojmenování větví
 
@@ -646,7 +595,7 @@ git merge feature/kalkulacka
 
 ### Přes VS Code
 
-1. Přepni se na cílovou větev (např. `main`) – klikni na název větve vlevo dole
+1. Přepni se na cílovou větev (např. `main`) – klikni na název větve vlevo dole jako při vytváření větve
 2. Otevři příkazovou paletu: `Ctrl + Shift + P`
 3. Napiš **"Git: Merge Branch..."**
 
@@ -655,9 +604,9 @@ git merge feature/kalkulacka
 │  > Git: Merge Branch...                          │  ← vyber
 └──────────────────────────────────────────────────┘
 ```
+Případně lze kliknout na tři tečky v Source control a tam je `branch -> Merge`
 
-<!-- 📸 Screenshot: Příkazová paleta s "Git: Merge Branch..." -->
-<!-- ![Git Merge v paletě](images/cmd_palette_git_merge.png) -->
+![Git Merge v paletě](merge_3_tecky.png) -->
 
 4. Vyber větev, kterou chceš sloučit (např. `feature/kalkulacka`)
 

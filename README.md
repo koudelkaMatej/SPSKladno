@@ -1,4 +1,4 @@
-# SPSKladno Příprava prostředí 
+# SPSKladno
 
 ## Nastavení VS Code a GIT ve školním prostředí
 

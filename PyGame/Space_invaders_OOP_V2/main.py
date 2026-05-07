@@ -18,7 +18,7 @@ player_group.add(player)
 enemy_group = pygame.sprite.Group()
 
 
-level = 1 #start level 1
+level = 2 #start level 2
 def create_lvl(level):# generovani nepratel pro první level
     if level > 5:
         enemy = Boss(150, 25)

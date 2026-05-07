@@ -76,6 +76,8 @@ projekt_kopie_backup.py                  ├── verze 3 (oprava bugu)
 
 > ⚠️ Pokud už v souboru nějaké nastavení máš, přidej pouze jednotlivé položky – neduplikuj vnější složené závorky `{}`.
 
+Poté restartujte VS Code, případně stiskni `Ctrl + Shift + P` (otevře se příkazová paleta nahoře) a napiš `reload windows`
+
 #### 2.2 Nastavení Git identity
 
 1. V dolní liště VS Code klikni na šipku vedle **+** u terminálu

@@ -22,3 +22,15 @@ BOSS_SCALE = 3
 ENEMY_IMAGE_PATH = "obrazky/alien{}.png"
 ENEMY_BULLET_IMAGE_PATH = "obrazky/alien_bullet.png"
 ENEMY_BULLET_SPEED = 4
+ENEMY_HP_BAR_WIDTH = 200
+ENEMY_HP_BAR_HEIGHT = 20
+
+#barvy
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (0, 255, 0)
+YELLOW = (255, 255, 0)
+RED = (255, 0, 0)
+
+#explosion settings
+EXPLOSION_IMAGE_PATH = "obrazky/exp{}.png"

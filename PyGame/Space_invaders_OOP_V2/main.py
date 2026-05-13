@@ -4,6 +4,8 @@ from Player import Player
 from Enemy import Enemy
 from Bullet import Bullet
 from Boss import Boss
+from Explosion import Explosion
+from draw_hp_bar_enemies import draw_hp_bar_enemies
 pygame.init()
 screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 pygame.display.set_caption("Space Invaders OOP V2")
@@ -16,9 +18,10 @@ player = Player()
 player_group = pygame.sprite.Group()
 player_group.add(player)
 enemy_group = pygame.sprite.Group()
+explosion_group = pygame.sprite.Group()
 
 
-level = 1 #start level 1
+level = 6 #start level 1
 def create_lvl(level):# generovani nepratel pro první level
     if level > 5:
         enemy = Boss(150, 25)
@@ -63,25 +66,33 @@ while running:
     player_bullet_group.draw(screen)
     enemy_bullet_group.update()
     enemy_bullet_group.draw(screen)
+    explosion_group.update()
+    explosion_group.draw(screen)
 
     # kontrola kolize mezi kulkami a hráčem
     if pygame.sprite.groupcollide(player_group, enemy_bullet_group, True, True, collided = pygame.sprite.collide_mask):
         print("Player hit!")
         running = False
     # kontrola kolize mezi střelou hráče a nepřáteli
-    if pygame.sprite.groupcollide(enemy_group, player_bullet_group, False, True, collided = pygame.sprite.collide_mask):
+    collided_enemies = pygame.sprite.groupcollide(enemy_group, player_bullet_group, False, True, collided = pygame.sprite.collide_mask)
+    for enemy in collided_enemies:
         if enemy.hp > 1:
             enemy.hp -= 1
             print("Enemy hit! HP left:", enemy.hp)
         else:
+            explosion = Explosion(enemy.rect.centerx, enemy.rect.centery)
+            explosion_group.add(explosion)
             enemy.kill()
             print("Enemy shotted down!")
-        if len(enemy_group) == 0:
-            level += 1
-            create_lvl(level) 
+    if len(enemy_group) == 0:
+        level += 1
+        create_lvl(level) 
     if pygame.sprite.groupcollide(enemy_group, player_group, True, True, collided = pygame.sprite.collide_mask):
         print("Player hit by enemy!")
         running = False
+    if level > 5:
+        for enemy in enemy_group:
+            draw_hp_bar_enemies(screen, enemy.hp, enemy.rect.x, enemy.rect.top - 10)
 
 
     pygame.display.flip()

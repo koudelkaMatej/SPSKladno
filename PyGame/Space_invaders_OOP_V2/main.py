@@ -21,7 +21,11 @@ enemy_group = pygame.sprite.Group()
 explosion_group = pygame.sprite.Group()
 
 
+<<<<<<< HEAD
 level = 6 #start level 1
+=======
+level = 2 #start level 2
+>>>>>>> bae21b50136bb7960ca513865fe76726a0fe176f
 def create_lvl(level):# generovani nepratel pro první level
     if level > 5:
         enemy = Boss(150, 25)

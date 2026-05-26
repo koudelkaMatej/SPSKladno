@@ -16,8 +16,8 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT] and self.rect.right < settings.SCREEN_WIDTH:
             self.rect.x += self.speed
         #shooting kontrola
-        if self.cooldown + 1000 < pygame.time.get_ticks():
-            self.cooldown = 0
+        if self.cooldown + 1000 < pygame.time.get_ticks(): #omezení střely 1x a vteřinu
+            self.cooldown = 0 #reset cooldownu, který říká, že můžeme střílet pokud je 0
 
 if __name__ == "__main__":
     import main

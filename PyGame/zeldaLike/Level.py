@@ -59,4 +59,4 @@ class Level:
 
 
 if __name__ == "__main__":
-    import pokus1
+    import SPSKladno.PyGame.zeldaLike.main as main

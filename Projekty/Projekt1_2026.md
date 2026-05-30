@@ -799,6 +799,7 @@ Merge PR se provádí **na webu GitHub**:
 
 ---
 
+
 ## Přehled: bash ↔ VS Code
 
 | Co chcete udělat | Git bash | VS Code |

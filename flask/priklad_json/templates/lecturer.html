@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Petra Plachá</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
+    <img src="{{ profile.picture_url }}" alt="{{ profile.first_name }} {{ profile.last_name }}">
+    <p>
+        <b>Pozice:</b> {{ profile.claim }}
+    </p>
+    <p>
+        <b>Bio:</b>
+        {{ profile.bio | safe }} <!-- Use the 'safe' filter to render HTML tags in the bio -->
+    </p>
+    <p>
+        <b>Kontakt:</b>
+        <ul>
+            <li>Telefon: {{ profile.contact.telephone_numbers[0] }}</li>
+            <li>E-mail: {{ profile.contact.emails[0],profile.contact.emails[1] }}</li>
+        </ul>
+    </p>
+
+    <!-- Additional Information from JSON -->
+    <p>
+        <b>UUID:</b> {{ profile.UUID }}<br>
+        <b>Title Before:</b> {{ profile.title_before }}<br>
+        <b>Middle Name:</b> {{ profile.middle_name }}<br>
+        <b>Title After:</b> {{ profile.title_after }}<br>
+        <b>Location:</b> {{ profile.location }}<br>
+        <b>Tags:</b>
+        {% for tag in profile.tags %}
+            {{ tag.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}<br>
+        <b>Price Per Hour:</b> {{ profile.price_per_hour }}<br>
+    </p>
+</body>
+</html>

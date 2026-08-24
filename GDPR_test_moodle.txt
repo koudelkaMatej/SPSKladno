@@ -1,0 +1,86 @@
+// ============================================================
+// GDPR ve školství – Test pro zaměstnance SPŠ a VOŠ Kladno
+// Formát: GIFT (Moodle import)
+// Import: Správa kurzu → Banka otázek → Import → Formát GIFT
+// Kódování souboru: UTF-8
+// ============================================================
+
+// Otázka 1 – Co je GDPR
+::GDPR_01::Co je GDPR? {
+    =Evropské nařízení o ochraně osobních údajů platné od 25. května 2018, které sjednotilo pravidla pro zpracování osobních dat v celé EU.
+    ~Český zákon o ochraně dat, který nahradil zákon č. 101/2000 Sb.
+    ~Interní směrnice školy o nakládání s dokumenty žáků.
+    ~Dobrovolný standard pro firmy, které chtějí chránit data zákazníků.
+}
+
+// Otázka 2 – Kdo je správce
+::GDPR_02::Kdo je v kontextu školy tzv. „správce" osobních údajů ve smyslu GDPR? {
+    =Škola jako instituce (zastoupená ředitelem školy).
+    ~Pověřenec pro ochranu osobních údajů (DPO).
+    ~Třídní učitel, který vede třídní knihu.
+    ~Firma spravující školní informační systém (Bakaláři apod.).
+}
+
+// Otázka 3 – Souhlas s fotografováním
+::GDPR_03::Třídní učitel chce zveřejnit fotografii ze školního výletu na webových stránkách školy. Co musí splnit? {
+    =Musí mít předem udělený souhlas zákonného zástupce žáka (nebo zletilého žáka samotného) s tímto konkrétním účelem zveřejnění.
+    ~Stačí žákům na výletě říct, že bude fotit – tím se považuje souhlas za udělený.
+    ~Souhlas není potřeba, protože výlet je školní akce pořádaná ze zákona.
+    ~Postačí obecný souhlas podepsaný při zápisu žáka do školy.
+}
+
+// Otázka 4 – Souhlas jako podmínka účasti
+::GDPR_04::Rodič odmítne podepsat souhlas s fotografováním svého dítěte. Může škola žáka z důvodu odmítnutí souhlasu vyloučit ze školního výletu? {
+    =Ne. Souhlas musí být svobodný – nelze ho podmiňovat účastí na školních akcích ani jiným způsobem vynucovat.
+    ~Ano, pokud je focení součástí programu akce.
+    ~Záleží na rozhodnutí ředitele školy.
+    ~Ano, ale škola musí nabídnout náhradní program.
+}
+
+// Otázka 5 – Likvidace dokumentů
+::GDPR_05::Učitel chce zlikvidovat staré písemné práce žáků, které obsahují jejich jméno a hodnocení. Jak má správně postupovat? {
+    =Dokumenty skartovat pomocí skartovacího stroje – nesmí být vyhozeny do koše ani do recyklace.
+    ~Vyhodit do koše v kabinetu – jsou to jen interní dokumenty školy.
+    ~Vložit do recyklačního kontejneru – papír je tak chráněn při zpracování.
+    ~Uložit do archivu bez časového omezení.
+}
+
+// Otázka 6 – Zdravotní záznamy
+::GDPR_06::Žák má diagnostikovanou dysgrafii a má nárok na delší čas při písemkách. Jak má učitel s touto informací nakládat? {
+    =Informaci sdílet pouze s kolegy, kteří žáka vyučují a kteří ji pro výuku skutečně potřebují – ne s celou sborovnou ani se žáky.
+    ~Informaci sdělit celé třídě, aby spolužáci rozuměli, proč žák dostává více času.
+    ~Informaci zveřejnit na nástěnce kabinetu pro přehled všech vyučujících.
+    ~Informaci uchovávat pouze v soukromém zápisníku učitele mimo školní systémy.
+}
+
+// Otázka 7 – Bezpečnost PC
+::GDPR_07::Učitel odchází od počítače na 10 minut. Na obrazovce je otevřená třídní kniha s docházkou žáků. Co má udělat? {
+    =Zamknout obrazovku klávesovou zkratkou Win + L (nebo Ctrl + Alt + Del → Zamknout).
+    ~Nic – kabinet je zamčený, takže nehrozí žádné riziko.
+    ~Minimalizovat okno – to stačí, data nejsou přímo viditelná.
+    ~Odhlásit se ze systému pouze v případě, že odchází na více než 30 minut.
+}
+
+// Otázka 8 – Předávání informací po telefonu
+::GDPR_08::Na sekretariát zavolá babička žáka a žádá informace o jeho docházce a výsledcích. Jak má sekretářka správně postupovat? {
+    =Informace neposkytne – babička není zákonný zástupce ani oprávněná osoba. Odkáže ji na zákonného zástupce nebo třídního učitele.
+    ~Informace poskytne, protože jde o rodinného příslušníka a zájem o dítě je oprávněný.
+    ~Informace poskytne pouze ústně, ale nepošle žádné dokumenty.
+    ~Záleží na tom, zda babička zná rodné číslo žáka.
+}
+
+// Otázka 9 – Incident / únik dat
+::GDPR_09::Učitelka omylem rozešle e-mailem přehled výsledků celé třídy (jména + hodnocení) místo jednoho rodiče všem rodičům ve třídě. Co musí udělat jako první? {
+    =Okamžitě informovat pověřence pro ochranu osobních údajů (DPO) – incident musí být zdokumentován a posouzen. Nečekat na konec dne ani na příští poradu.
+    ~Rozeslat omluvu všem rodičům a záležitost považovat za vyřešenou.
+    ~Informovat vedení školy nejpozději do týdne na nejbližší pedagogické radě.
+    ~Nic – jde o interní záležitost, která se rodičů přímo týká, takže to není porušení GDPR.
+}
+
+// Otázka 10 – Oprávněný přístup
+::GDPR_10::Kolega učitel vás požádá o vaše přihlašovací heslo do systému Bakaláři, protože své zapomněl a potřebuje rychle zkontrolovat docházku. Co uděláte? {
+    =Heslo neposkytnu a odkáži kolegu na správce školní sítě nebo IT administrátora, který mu pomůže obnovit přístup.
+    ~Heslo dám kolegovi, ale požádám ho, aby ho nikomu dál neposkytoval.
+    ~Heslo dám kolegovi – jde o interního zaměstnance školy, takže to není problém.
+    ~Pomůžu kolegovi tím, že se sám přihlásím a výsledky mu ukážu na svém monitoru.
+}

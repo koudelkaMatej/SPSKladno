@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+  <!-- Otázka 1 – Co je GDPR -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_01 – Co je GDPR</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Co je GDPR?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Evropské nařízení o ochraně osobních údajů platné od 25. května 2018, které sjednotilo pravidla pro zpracování osobních dat v celé EU.]]></text>
+      <feedback><text>Správně! GDPR (General Data Protection Regulation) je nařízení EU 2016/679, účinné od 25. 5. 2018.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Český zákon o ochraně dat, který nahradil zákon č. 101/2000 Sb.]]></text>
+      <feedback><text>Nesprávně. GDPR je evropské nařízení, nikoli český zákon. V ČR ho doplňuje zákon č. 110/2019 Sb.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Interní směrnice školy o nakládání s dokumenty žáků.]]></text>
+      <feedback><text>Nesprávně. Interní směrnice školy vychází z GDPR, ale GDPR samotné je evropské nařízení.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Dobrovolný standard pro firmy, které chtějí chránit data zákazníků.]]></text>
+      <feedback><text>Nesprávně. GDPR není dobrovolný standard – jde o závazné právní nařízení s sankcemi za porušení.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 2 – Kdo je správce -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_02 – Kdo je správce osobních údajů</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Kdo je v kontextu školy tzv. <strong>„správce"</strong> osobních údajů ve smyslu GDPR?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Škola jako instituce (zastoupená ředitelem školy).]]></text>
+      <feedback><text>Správně! Správcem je právnická osoba, která určuje účel a způsob zpracování dat – v případě školy je to škola samotná.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Pověřenec pro ochranu osobních údajů (DPO).]]></text>
+      <feedback><text>Nesprávně. DPO (pověřenec) je poradní a kontrolní role – správcem zůstává škola jako instituce.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Třídní učitel, který vede třídní knihu.]]></text>
+      <feedback><text>Nesprávně. Třídní učitel je zaměstnanec, který se podílí na zpracování dat jménem správce – školy.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Firma spravující školní informační systém (Bakaláři apod.).]]></text>
+      <feedback><text>Nesprávně. Tato firma je tzv. zpracovatel – zpracovává data na základě smlouvy se správcem (školou).</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 3 – Souhlas s fotografováním -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_03 – Souhlas s fotografováním na webu</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Třídní učitel chce zveřejnit fotografii ze školního výletu na webových stránkách školy. Co musí splnit?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Musí mít předem udělený souhlas zákonného zástupce žáka (nebo zletilého žáka samotného) s tímto konkrétním účelem zveřejnění.]]></text>
+      <feedback><text>Správně! Zveřejnění fotografie žáka na webu vyžaduje konkrétní a informovaný souhlas pro tento konkrétní účel.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Stačí žákům na výletě říct, že bude fotit – tím se považuje souhlas za udělený.]]></text>
+      <feedback><text>Nesprávně. Ústní oznámení není platný souhlas. Souhlas musí být svobodný, konkrétní, informovaný a prokazatelný.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Souhlas není potřeba, protože výlet je školní akce pořádaná ze zákona.]]></text>
+      <feedback><text>Nesprávně. Výlet je sice školní akcí, ale zveřejnění fotografií na webu není zákonnou povinností – vyžaduje souhlas.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Postačí obecný souhlas podepsaný při zápisu žáka do školy.]]></text>
+      <feedback><text>Nesprávně. Souhlas musí být konkrétní – zvlášť pro web, zvlášť pro sociální sítě apod. Příliš obecný souhlas není platný.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 4 – Souhlas jako podmínka účasti -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_04 – Souhlas nesmí být podmínkou účasti</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Rodič odmítne podepsat souhlas s fotografováním svého dítěte. Může škola žáka z tohoto důvodu <strong>vyloučit ze školního výletu</strong>?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Ne. Souhlas musí být svobodný – nelze ho podmiňovat účastí na školních akcích ani jinak vynucovat.]]></text>
+      <feedback><text>Správně! Podmínění souhlasu účastí na výletu nebo jiným benefitem je porušením GDPR – souhlas by pak nebyl svobodný.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Ano, pokud je focení součástí programu akce.]]></text>
+      <feedback><text>Nesprávně. Souhlas s fotografováním musí být vždy svobodný a nesmí být podmínkou žádné školní aktivity.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Záleží na rozhodnutí ředitele školy.]]></text>
+      <feedback><text>Nesprávně. Ředitel nemá pravomoc vynucovat souhlas – to by bylo v přímém rozporu s GDPR.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Ano, ale škola musí nabídnout náhradní program.]]></text>
+      <feedback><text>Nesprávně. Žák musí mít právo odmítnout souhlas bez jakéhokoli postihu nebo kompenzace.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 5 – Likvidace dokumentů -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_05 – Správná likvidace dokumentů</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Učitel chce zlikvidovat staré písemné práce žáků, které obsahují jejich <strong>jméno a hodnocení</strong>. Jak má správně postupovat?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Dokumenty skartovat pomocí skartovacího stroje – nesmí být vyhozeny do koše ani do recyklace.]]></text>
+      <feedback><text>Správně! Dokumenty s osobními údaji (jméno + hodnocení) musí být fyzicky zničeny skartací, aby je nebylo možné rekonstruovat.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Vyhodit do koše v kabinetu – jsou to jen interní dokumenty školy.]]></text>
+      <feedback><text>Nesprávně. Koš v kabinetu je dostupný dalším osobám. Dokumenty s osobními údaji musí být skartovány.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Vložit do recyklačního kontejneru – papír je chráněn při průmyslovém zpracování.]]></text>
+      <feedback><text>Nesprávně. Recyklační kontejner je veřejně přístupný. Dokumenty mohou být přečteny dříve, než dojde ke zpracování.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Uložit do archivu bez časového omezení.]]></text>
+      <feedback><text>Nesprávně. Písemné práce žáků se archivují jen po omezenou dobu (zpravidla 1 rok po konci školního roku), poté musí být skartovány.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 6 – SVP a zdravotní záznamy -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_06 – Nakládání s informacemi o SVP</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Žák má diagnostikovanou <strong>dysgrafii</strong> a má nárok na delší čas při písemkách. Jak má učitel s touto informací nakládat?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Informaci sdílet pouze s kolegy, kteří žáka vyučují a kteří ji pro výuku skutečně potřebují – ne s celou sborovnou ani se žáky.]]></text>
+      <feedback><text>Správně! Informace o SVP jsou citlivé osobní údaje (zdravotního charakteru). Přístup k nim mají jen ti, kdo je skutečně potřebují pro svou práci.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informaci sdělit celé třídě, aby spolužáci rozuměli, proč žák dostává více času.]]></text>
+      <feedback><text>Nesprávně. Sdělení zdravotní informace spolužákům bez souhlasu žáka je porušením GDPR i ochrany osobnosti.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informaci zveřejnit na nástěnce kabinetu pro přehled všech vyučujících.]]></text>
+      <feedback><text>Nesprávně. Nástěnka v kabinetu je přístupná i osobám, které tuto informaci nepotřebují. Citlivé údaje takto sdílet nelze.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informaci uchovávat pouze v soukromém zápisníku učitele mimo školní systémy.]]></text>
+      <feedback><text>Nesprávně. Data žáků nesmí být uchovávána mimo schválené školní systémy – soukromý zápisník není zabezpečené úložiště.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 7 – Bezpečnost PC -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_07 – Zamykání počítače</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Učitel odchází od počítače na 10 minut. Na obrazovce je otevřená třídní kniha s docházkou žáků. Co má udělat?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Zamknout obrazovku klávesovou zkratkou Win + L (nebo Ctrl + Alt + Del → Zamknout).]]></text>
+      <feedback><text>Správně! Zamknutí obrazovky při každém odchodu od PC je základní bezpečnostní povinností při práci s osobními údaji.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Nic – kabinet je zamčený, takže nehrozí žádné riziko.]]></text>
+      <feedback><text>Nesprávně. Kabinet sdílí více vyučujících, mohou do něj vstoupit žáci i jiné osoby. Otevřená data jsou neoprávněně přístupná.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Minimalizovat okno – to stačí, data nejsou přímo viditelná.]]></text>
+      <feedback><text>Nesprávně. Minimalizované okno lze jedním kliknutím obnovit. Obrazovka musí být zamčena heslem.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Odhlásit se ze systému pouze v případě, že odchází na více než 30 minut.]]></text>
+      <feedback><text>Nesprávně. Délka nepřítomnosti nehraje roli. Obrazovka se zamyká vždy při odchodu od počítače – i na 2 minuty.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 8 – Předávání informací po telefonu -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_08 – Předávání informací třetím osobám</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Na sekretariát zavolá <strong>babička žáka</strong> a žádá informace o jeho docházce a výsledcích. Jak má sekretářka správně postupovat?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Informace neposkytne – babička není zákonný zástupce ani oprávněná osoba. Odkáže ji na zákonného zástupce nebo třídního učitele.]]></text>
+      <feedback><text>Správně! Osobní údaje žáka lze sdílet pouze s oprávněnými osobami – zpravidla zákonnými zástupci. Babička toto právo nemá, pokud není v systému evidována jako oprávněný kontakt.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informace poskytne, protože jde o rodinného příslušníka a zájem o dítě je oprávněný.]]></text>
+      <feedback><text>Nesprávně. Příbuzenský vztah opravňující přístup k datům žáka automaticky nezakládá. Oprávnění mají pouze zákonní zástupci (nebo osoby jimi pověřené).</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informace poskytne pouze ústně, ale nepošle žádné dokumenty.]]></text>
+      <feedback><text>Nesprávně. Forma předání (ústní vs. písemná) není rozhodující. Neoprávněná osoba nesmí dostat informace v žádné podobě.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Záleží na tom, zda babička zná rodné číslo žáka.]]></text>
+      <feedback><text>Nesprávně. Znalost rodného čísla neopravňuje k přístupu k osobním údajům – to by bylo absurdní bezpečnostní opatření.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 9 – Incident / únik dat -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_09 – Postup při úniku dat</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Učitelka omylem rozešle e-mailem <strong>přehled výsledků celé třídy</strong> (jména + hodnocení) místo jednomu rodiči všem rodičům ve třídě. Co musí udělat jako první?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Okamžitě informovat pověřence pro ochranu osobních údajů (DPO) – incident musí být zdokumentován a posouzen. Nečekat na konec dne ani na příští poradu.]]></text>
+      <feedback><text>Správně! Jakýkoli bezpečnostní incident musí být okamžitě nahlášen DPO. V závažných případech má škola povinnost informovat ÚOOÚ do 72 hodin od zjištění.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Rozeslat omluvu všem rodičům a záležitost považovat za vyřešenou.]]></text>
+      <feedback><text>Nesprávně. Omluva sama o sobě nestačí. Incident musí být nahlášen DPO, zdokumentován a posouzen z hlediska závažnosti.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Informovat vedení školy nejpozději do týdne na nejbližší pedagogické radě.]]></text>
+      <feedback><text>Nesprávně. Týdenní prodleva je nepřijatelná. Incident je nutné nahlásit okamžitě – při závažném porušení musí ÚOOÚ vědět do 72 hodin.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Nic – jde o interní záležitost, která se rodičů přímo týká, takže to není porušení GDPR.]]></text>
+      <feedback><text>Nesprávně. Rozeslání osobních údajů (výsledků žáků) neoprávněným příjemcům je bezpečnostní incident, který musí být nahlášen a zdokumentován.</text></feedback>
+    </answer>
+  </question>
+
+  <!-- Otázka 10 – Sdílení přihlašovacích údajů -->
+  <question type="multichoice">
+    <name>
+      <text>GDPR_10 – Sdílení přihlašovacích údajů</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Kolega učitel vás požádá o vaše <strong>přihlašovací heslo do systému Bakaláři</strong>, protože své zapomněl a potřebuje rychle zkontrolovat docházku. Co uděláte?</p>]]></text>
+    </questiontext>
+    <defaultgrade>1</defaultgrade>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100">
+      <text><![CDATA[Heslo neposkytnu a odkáži kolegu na správce školní sítě nebo IT administrátora, který mu pomůže obnovit přístup.]]></text>
+      <feedback><text>Správně! Přihlašovací údaje jsou osobní a nesmí být sdíleny s nikým – ani s kolegy. Každý uživatel musí mít vlastní přístup, aby bylo možné dohledat, kdo a kdy k datům přistupoval.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Heslo dám kolegovi, ale požádám ho, aby ho nikomu dál neposkytoval.]]></text>
+      <feedback><text>Nesprávně. Sdílení hesla s kýmkoli – i s důvěryhodným kolegou – je porušením bezpečnostních pravidel. Nelze pak dohledat, kdo a kdy k datům přistupoval.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Heslo dám kolegovi – jde o interního zaměstnance školy, takže to není problém.]]></text>
+      <feedback><text>Nesprávně. Interní zaměstnanec musí mít vlastní přihlašovací údaje. Sdílení hesel narušuje sledovatelnost přístupu k datům žáků.</text></feedback>
+    </answer>
+    <answer fraction="0">
+      <text><![CDATA[Pomůžu kolegovi tím, že se sám přihlásím a výsledky mu ukážu na svém monitoru.]]></text>
+      <feedback><text>Nesprávně. Tím by kolega obdržel informace z cizího účtu. Navíc se v systému zaznamená váš přístup, i když data prohlížel někdo jiný – to zkresluje auditní záznamy.</text></feedback>
+    </answer>
+  </question>
+
+</quiz>

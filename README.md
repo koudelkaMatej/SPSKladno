@@ -34,9 +34,11 @@ Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings
 
 > ⚠️ Pokud už v souboru nějaké nastavení máš, přidej pouze jednotlivé položky – neduplikuj vnější složené závorky `{}`.
 
+Po uložení a zavření soubou `settings.json` vypněte a zapněte VS code, případně (`Ctrl + Shift + P`) a `Reload Window`
+
 ### 2. Nastavení Git identity
 
-Otevři terminál **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a zadej:
+Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a zadej po 1 řádku:
 
 ```bash
 git config --global user.email "tvuj@email.cz"
@@ -71,18 +73,11 @@ Nejdřív si vytvoř složku pro svůj projekt (např. na ploše nebo na disku) 
 
 ### 5. Naklonování Git repozitáře
 
-V terminálu (PowerShell nebo Git Bash Portable) se přesuň do své složky projektu a naklonuj repozitář:
+V terminálu (Git Bash Portable) naklonuj repozitář:
 
 ```bash
 git clone https://github.com/uzivatel/nazev-repozitare.git 
 ```
-Nebo 
-```bash
-git clone https://github.com/uzivatel/nazev-repozitare.git .
-```
-
-> ⚠️ Tečka `.` na konci znamená, že se obsah naklonuje **přímo do aktuální složky** (nevytvoří se podsložka).
-
 Případně můžeš klonovat přes VS Code:
 1. Otevři příkazovou paletu (`Ctrl + Shift + P`)
 2. Zadej **"Git: Clone"**

@@ -7,13 +7,13 @@ Ve škole je Python, Git i VS Code nainstalováno jako **portable verze na serve
 Návod je rozdělen na dvě části:
 - **Část A** – jednorázové nastavení (stačí udělat jednou na školním PC)
 - **Část B** – kroky pro každý nový projekt (i po restartu PC)
-
+- **Poznámka** - Návod je skoro stejný i doma. Doma je potřeba nainstalovat Python(v instalaci přidat Add Python to PATH), git (defaultní nastavení), VS Code
 ---
 
 ## Část A – Jednorázové nastavení (udělej jen poprvé)
 
 ### 1. Nastavení VS Code (settings.json)
-
+**Tento krok lze doma vynechat**
 Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings (JSON)"** a vlož následující konfiguraci:
 
 ```json
@@ -38,7 +38,7 @@ Po uložení a zavření soubou `settings.json` vypněte a zapněte VS code, př
 
 ### 2. Nastavení Git identity
 
-Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a zadej po 1 řádku:
+Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a **zadej po 1 řádku**:
 
 ```bash
 git config --global user.email "tvuj@email.cz"
@@ -105,6 +105,12 @@ V terminálu VS Code spusť:
 
 ```powershell
 & "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
+```
+
+V terminálu VS Code **DOMA** spusť:
+
+```powershell
+python -m venv venv
 ```
 
 ### 9. Aktivace virtuálního prostředí

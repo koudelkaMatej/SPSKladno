@@ -71,9 +71,15 @@ Nejdřív si vytvoř složku pro svůj projekt (např. na ploše nebo na disku) 
 
 > 💡 Vždy pracuj v otevřené složce – VS Code tak správně rozpozná projekt, Git i virtuální prostředí.
 
-### 5. Naklonování Git repozitáře
+### 5. Vytvoření Git repozitáře
+Nejjednodušší způsob je založit repozitář přímo na stránkách github. Vpravo nahoře klikněte na ikonku vašeho profilu a vyberte `Repositories`
+Poté vytvořte nový, kde doporučuji zaškrtnout add `README.md` a `.gitignore` pro python.
 
-V terminálu (Git Bash Portable) naklonuj repozitář:
+![Pridani_repozitare](github_create.png)
+
+### 6. Naklonování Git repozitáře
+
+V terminálu (Git Bash Portable) naklonuj repozitář: Odkaz najdete na stránce repozitáře -> Zelené tlačítko `Code` a v něm zkopírovat adresu `HTTPS`
 
 ```bash
 git clone https://github.com/uzivatel/nazev-repozitare.git 
@@ -85,7 +91,7 @@ Případně můžeš klonovat přes VS Code:
 
 > 🔁 Nahraď `https://github.com/uzivatel/nazev-repozitare.git` skutečnou URL svého repozitáře z GitHubu.
 
-### 6. Povolení spouštění skriptů
+### 7. Povolení spouštění skriptů
 
 Školní politika resetuje toto nastavení po každém restartu PC. **Musíš to spustit pokaždé znovu, pokud budeš chtít upravovat venv:**
 
@@ -93,7 +99,7 @@ Případně můžeš klonovat přes VS Code:
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
-### 7. Vytvoření virtuálního prostředí (venv)
+### 8. Vytvoření virtuálního prostředí (venv)
 
 V terminálu VS Code spusť:
 
@@ -101,13 +107,13 @@ V terminálu VS Code spusť:
 & "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
 ```
 
-### 8. Aktivace virtuálního prostředí
+### 9. Aktivace virtuálního prostředí
 
 ```powershell
 .\venv\Scripts\activate
 ```
 
-### 9. Instalace balíčků (pip install)
+### 10. Instalace balíčků (pip install)
 
 Po aktivaci virtuálního prostředí můžeš instalovat Python balíčky pomocí `pip`:
 
@@ -131,7 +137,7 @@ pip install -r requirements.txt
 
 ---
 
-### 10. Uložení závislostí (pip freeze)
+### 11. Uložení závislostí (pip freeze)
 
 Příkaz `pip freeze` vypíše **všechny nainstalované balíčky** ve tvém virtuálním prostředí i s jejich verzemi:
 
@@ -180,9 +186,10 @@ pip install -r requirements.txt
 | # | Co udělat | Kde |
 |---|-----------|-----|
 | 4 | Vytvořit a otevřít složku projektu | VS Code – File → Open Folder |
-| 5 | Naklonovat Git repozitář | Terminál nebo VS Code – Git: Clone |
-| 6 | Povolit spouštění skriptů | PowerShell terminál |
-| 7 | Vytvořit venv | PowerShell terminál |
-| 8 | Aktivovat venv | PowerShell terminál |
-| 9 | Nainstalovat balíčky (`pip install`) | PowerShell terminál (s aktivním venv) |
-| 10 | Uložit závislosti (`pip freeze`) | PowerShell terminál (s aktivním venv) |
+| 5 | Vytvoření Git repozitář | Stránky Githubu |
+| 6 | Naklonovat Git repozitář | Terminál nebo VS Code – Git: Clone |
+| 7 | Povolit spouštění skriptů | PowerShell terminál |
+| 8 | Vytvořit venv | PowerShell terminál |
+| 9 | Aktivovat venv | PowerShell terminál |
+| 10 | Nainstalovat balíčky (`pip install`) | PowerShell terminál (s aktivním venv) |
+| 11 | Uložit závislosti (`pip freeze`) | PowerShell terminál (s aktivním venv) |

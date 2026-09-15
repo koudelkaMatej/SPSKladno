@@ -34,7 +34,7 @@ Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings
 
 > ⚠️ Pokud už v souboru nějaké nastavení máš, přidej pouze jednotlivé položky – neduplikuj vnější složené závorky `{}`.
 
-Po uložení a zavření soubou `settings.json` vypněte a zapněte VS code, případně (`Ctrl + Shift + P`) a `Reload Window`
+Po uložení (`ctrl + s`) a zavření soubou `settings.json` vypněte a zapněte VS code, případně (`Ctrl + Shift + P`) a `Reload Window`
 
 ### 2. Nastavení Git identity
 

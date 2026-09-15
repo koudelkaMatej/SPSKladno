@@ -48,6 +48,8 @@ git config --global credential.helper store
 
 > 🔁 Nahraď `"tvuj@email.cz"` a `"TvujNick"` svými skutečnými údaji (např. z GitHubu).
 
+Pokud při prvním pushnutí (Commit/ Sync) bude git házet chybovou hlášku `user.name a user.email` je potřeba tyto tři příkazy napsat do terminálu napřímo. (`G:\win32app\git_portable\bin\bash.exe`) (`aplikace SPŠ a VOŠ/git_portable_bash`)
+
 ### 3. Instalace rozšíření (Extensions)
 
 VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj:

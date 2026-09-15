@@ -96,20 +96,20 @@ Případně můžeš klonovat přes VS Code:
 ### 7. Povolení spouštění skriptů
 
 Školní politika resetuje toto nastavení po každém restartu PC. **Musíš to spustit pokaždé znovu, pokud budeš chtít upravovat venv:**
-V terminálu VS Code **POWERSHELL**
+Otevři terminál (`ctrl + ;`) -> **PowerShell**
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
 ### 8. Vytvoření virtuálního prostředí (venv)
 
-V terminálu VS Code **POWERSHELL**
+Otevři terminál (`ctrl + ;`) -> **PowerShell**
 
 ```powershell
 & "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
 ```
 
-**DOMA** V terminálu VS Code **POWERSHELL** spusť:
+**DOMA** Otevři terminál (`ctrl + ;`) -> **PowerShell**
 
 ```powershell
 python -m venv venv
@@ -117,7 +117,7 @@ python -m venv venv
 
 ### 9. Aktivace virtuálního prostředí
 
-V terminálu VS Code **POWERSHELL**
+Otevři terminál (`ctrl + ;`) -> **PowerShell**
 
 ```powershell
 .\venv\Scripts\activate
@@ -127,7 +127,7 @@ V terminálu VS Code **POWERSHELL**
 
 Po aktivaci virtuálního prostředí můžeš instalovat Python balíčky pomocí `pip`:
 
-V terminálu VS Code **POWERSHELL**
+Otevři terminál (`ctrl + ;`) -> **PowerShell**
 ```powershell
 pip install "nazev-balicku"
 ```
@@ -149,7 +149,7 @@ pip install -r requirements.txt
 ---
 
 ### 11. Uložení závislostí (pip freeze)
-V terminálu VS Code **POWERSHELL**
+Otevři terminál (`ctrl + ;`) -> **PowerShell**
 Příkaz `pip freeze` vypíše **všechny nainstalované balíčky** ve tvém virtuálním prostředí i s jejich verzemi:
 
 ```powershell

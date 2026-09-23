@@ -39,6 +39,7 @@ Po uložení (`ctrl + s`) a zavření soubou `settings.json` vypněte a zapněte
 ### 2. Nastavení Git identity
 
 Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a **zadej po 1 řádku**:
+![Pridani_repozitare](zmena_terminalu.png)
 
 ```bash
 git config --global user.email "tvuj@email.cz"

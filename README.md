@@ -43,7 +43,11 @@ Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Cod
 
 ```bash
 git config --global user.email "tvuj@email.cz"
+```
+```bash
 git config --global user.name "TvujNick"
+```
+```bash
 git config --global credential.helper store
 ```
 

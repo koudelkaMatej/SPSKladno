@@ -1,17 +1,4 @@
-# === Pojmenované argumenty ===
-def zmena_jmena(jmeno):
-    print(jmeno)
-    jmeno = jmeno[::-1]
-    return jmeno
+def pozdrav(jmeno: str, vek:int) -> str:
+    return f"Ahoj {jmeno}, je ti {vek} let"
 
-jmeno = "petr"
-print(jmeno)
-
-print(jmeno)
-def zmena_jmena(jmeno):
-    print(jmeno)
-    jmeno = jmeno[::-1]
-    return jmeno
-jmeno1= zmena_jmena(jmeno)
-print(jmeno1)
-print(jmeno)
+pozdrav("Petr",

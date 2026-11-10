@@ -1,45 +1,75 @@
-# SPSKladno 
+# Návod na VS Code, Python a Git ve škole i doma
 
-## Nastavení VS Code a GIT ve školním prostředí
+## Nastavení VS Code, Pythonu a Gitu
 
-Ve škole je Python, Git i VS Code nainstalováno jako **portable verze na serveru**. Aby vše správně fungovalo, je potřeba provést následující kroky.
+Níže najdeš **4 samostatné návody**. Každý je kompletní sám o sobě – vyber si ten, který potřebuješ, a projdi ho od začátku do konce (nemusíš procházet ostatní návody).
 
-Návod je rozdělen na dvě části:
-- **Část A** – jednorázové nastavení (stačí udělat jednou na školním PC)
-- **Část B** – kroky pro každý nový projekt (i po restartu PC)
-- **Poznámka** - Návod je skoro stejný i doma. Doma je potřeba nainstalovat Python(v instalaci přidat Add Python to PATH), git (defaultní nastavení), VS Code
+- [Návod 1 – Nutné minimum, aby šel Python](#návod-1--nutné-minimum-aby-šel-python)
+- [Návod 2 – Nutné minimum, aby šel Python + Git](#návod-2--nutné-minimum-aby-šel-python--git)
+- [Návod 3 – Doporučené (jak se to dělá v reálném vývoji)](#návod-3--doporučené-jak-se-to-dělá-v-reálném-vývoji)
+- [Návod 4 – Jak je to u nás na škole](#návod-4--jak-je-to-u-nás-na-škole)
+
+Doma je potřeba nainstalovat Python (v instalaci zaškrtnout **Add Python to PATH**), VS Code a případně Git (stačí výchozí nastavení instalace). Ve škole je vše nainstalováno jako **portable verze na serveru** – přesný postup najdeš v [Návodu 4](#návod-4--jak-je-to-u-nás-na-škole).
+
 ---
 
-## Část A – Jednorázové nastavení (udělej jen poprvé)
+## Návod 1 – Nutné minimum, aby šel Python
 
-### 1. Nastavení VS Code (settings.json)
-**Tento krok lze doma vynechat**
-Otevři příkazovou paletu (`Ctrl + Shift + P`) → zadej **"Open User Settings (JSON)"** a vlož následující konfiguraci:
+Tenhle návod stačí, pokud chceš jen psát a spouštět Python skripty – bez Gitu a bez virtuálního prostředí (venv), to totiž základy Pythonu nepotřebují.
 
-```json
-{
-  "terminal.integrated.profiles.windows": {
-    "Git Bash Portable": {
-      "path": "G:/win32app/git_portable/bin/bash.exe",
-      "args": ["--login", "-i"]
-    }
-  },
-  "git.path": "G:/win32app/git_portable/cmd/git.exe",
-  "git.enabled": true,
-  "files.autoSave": "afterDelay",
-  "git.enableSmartCommit": true,
-  "git.autofetch": "all"
-}
+### 1. Instalace Pythonu
+Stáhni Python z [python.org](https://www.python.org/downloads/) a při instalaci zaškrtni **Add Python to PATH**.
+> Ve škole je Python nainstalovaný jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 2. Instalace VS Code
+Stáhni a nainstaluj VS Code z [code.visualstudio.com](https://code.visualstudio.com/).
+> Ve škole je VS Code nainstalováno jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 3. Instalace rozšíření Python
+V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj rozšíření 
+* **Python** (`ms-python.python`) od Microsoftu 
+* **Jupyter** (`ms-toolsai.jupyter`) pro práci s notebooky (.ipynb).
+
+### 4. Otevření složky projektu
+Vytvoř si složku pro svůj projekt a otevři ji ve VS Code: **File → Open Folder…** (`Ctrl + K, Ctrl + O`).
+
+### 5. Vytvoření a spuštění skriptu
+Vytvoř soubor např. `main.py`, napiš do něj kód a spusť ho tlačítkem ▷ (Run) vpravo nahoře, nebo v terminálu:
+
+```powershell
+python main.py
 ```
 
-> ⚠️ Pokud už v souboru nějaké nastavení máš, přidej pouze jednotlivé položky – neduplikuj vnější složené závorky `{}`.
+### 6. Instalace balíčků (pokud je potřeba)
+Pro jednoduché skripty stačí nainstalovat balíček přímo, bez venv:
 
-Po uložení (`ctrl + s`) a zavření soubou `settings.json` vypněte a zapněte VS code, případně (`Ctrl + Shift + P`) a `Reload Window`
+```powershell
+pip install nazev-balicku
+```
 
-### 2. Nastavení Git identity
+> 💡 Jakmile pracuješ na větším projektu nebo ho sdílíš s ostatními, přejdi na [Návod 3 – Doporučené](#návod-3--doporučené-jak-se-to-dělá-v-reálném-vývoji), kde se používá virtuální prostředí.
 
-Otevři terminál (`ctrl + ;`) -> **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu - vedle pluska malý zobáček dolů) a **zadej po 1 řádku**:
-![Pridani_repozitare](zmena_terminalu.png)
+---
+
+## Návod 2 – Nutné minimum, aby šel Python + Git
+
+Tenhle návod obsahuje vše potřebné pro spouštění Pythonu a navíc základní práci s Gitem, abys mohl svůj kód nahrát na GitHub.
+
+### 1. Instalace Pythonu
+Stáhni Python z [python.org](https://www.python.org/downloads/) a při instalaci zaškrtni **Add Python to PATH**.
+> Ve škole je Python nainstalovaný jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 2. Instalace VS Code a Gitu
+Stáhni a nainstaluj VS Code z [code.visualstudio.com](https://code.visualstudio.com/) a Git z [git-scm.com](https://git-scm.com/) (stačí výchozí nastavení instalace).
+> Ve škole je vše nainstalováno jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 3. Instalace rozšíření Python
+V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj rozšíření 
+* **Python** (`ms-python.python`) od Microsoftu 
+* **Jupyter** (`ms-toolsai.jupyter`) pro práci s notebooky (.ipynb).
+
+### 4. Nastavení Git identity
+Otevři terminál (`ctrl + ;`) a zadej po jednom řádku:
 
 ```bash
 git config --global user.email "tvuj@email.cz"
@@ -52,160 +82,300 @@ git config --global credential.helper store
 ```
 
 > 🔁 Nahraď `"tvuj@email.cz"` a `"TvujNick"` svými skutečnými údaji (např. z GitHubu).
+### 5. Otevření a práce s projektem
+**File → Open Folder…** (`Ctrl + K, Ctrl + O`) → vyber naklonovanou složku. Změny commituješ a pushuješ přes panel **Source Control** (`Ctrl + Shift + G`).
 
-Pokud při prvním pushnutí (Commit/ Sync) bude git házet chybovou hlášku `user.name a user.email` je potřeba tyto tři příkazy napsat do terminálu napřímo. (`G:\win32app\git_portable\bin\bash.exe`) (`aplikace SPŠ a VOŠ/git_portable_bash`)
-
-### 3. Instalace rozšíření (Extensions)
-
-VS Code potřebuje rozšíření pro práci s Pythonem a Jupyter notebooky. V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj:
-
-- **Python** (`ms-python.python`) – podpora pro Python (IntelliSense, linting, debugging)
-- **Jupyter** (`ms-toolsai.jupyter`) – podpora pro Jupyter notebooky (.ipynb)
-
-> 💡 Stačí do vyhledávání zadat „Python" nebo „Jupyter" a nainstalovat rozšíření od **Microsoftu**.
-
----
-
-## Část B – Pro každý nový projekt (nebo po restartu PC)
-
-### 4. Vytvoření a otevření složky projektu
-
-Nejdřív si vytvoř složku pro svůj projekt (např. na ploše nebo na disku) a otevři ji ve VS Code:
-
-1. **File → Open Folder…** (`Ctrl + K, Ctrl + O`)
-2. Vyber nebo vytvoř novou složku pro svůj projekt
-3. Potvrď otevření složky
-
-> 💡 Vždy pracuj v otevřené složce – VS Code tak správně rozpozná projekt, Git i virtuální prostředí.
-
-### 5. Vytvoření Git repozitáře
-Nejjednodušší způsob je založit repozitář přímo na stránkách github. Vpravo nahoře klikněte na ikonku vašeho profilu a vyberte `Repositories`
-Poté vytvořte nový, kde doporučuji zaškrtnout add `README.md` a `.gitignore` pro python.
+### 6. Vytvoření Git repozitáře
+Založ repozitář na GitHubu – vpravo nahoře klikni na ikonku profilu a vyber `Repositories` → `New`. Doporučuji rovnou zaškrtnout add `README.md` a `.gitignore` pro Python projekty.
 
 ![Pridani_repozitare](github_create.png)
 
-### 6. Naklonování Git repozitáře
-
-V terminálu (Git Bash Portable) naklonuj repozitář: Odkaz najdete na stránce repozitáře -> Zelené tlačítko `Code` a v něm zkopírovat adresu `HTTPS`
+### 7. Naklonování repozitáře
+Na stránce repozitáře klikni na zelené tlačítko `Code` a zkopíruj HTTPS adresu:
 
 ```bash
 git clone https://github.com/uzivatel/nazev-repozitare.git 
 ```
-Případně můžeš klonovat přes VS Code:
+
+Případně přes VS Code:
 1. Otevři příkazovou paletu (`Ctrl + Shift + P`)
 2. Zadej **"Git: Clone"**
 3. Vlož URL repozitáře a vyber cílovou složku
 
-> 🔁 Nahraď `https://github.com/uzivatel/nazev-repozitare.git` skutečnou URL svého repozitáře z GitHubu.
 
-### 7. Povolení spouštění skriptů
 
-Školní politika resetuje toto nastavení po každém restartu PC. **Musíš to spustit pokaždé znovu, pokud budeš chtít upravovat venv:**
-Otevři terminál (`ctrl + ;`) -> **PowerShell**
+### 8. Instalace balíčků (pokud je potřeba)
+```powershell
+pip install nazev-balicku
+```
+
+---
+
+## Návod 3 – Doporučené (jak se to dělá v reálném vývoji)
+
+Tenhle návod ukazuje kompletní postup tak, jak se běžně pracuje na reálných projektech – navíc oproti Návodu 2 přidává virtuální prostředí (venv) a `requirements.txt`.
+
+> **Proč jinak než v Návodu 1?** V Návodu 1 jde jen o to, aby jeden skript fungoval u tebe na počítači. V reálném projektu ale kód sdílíš s dalšími lidmi (spolužáci, kolegové, učitel), pracuješ na něm dlouhodobě a časem k němu přidáváš další balíčky. Proto se navíc používá Git (verzování a sdílení kódu) a venv s `requirements.txt` (aby projekt šel spustit stejně na jakémkoliv jiném počítači).
+
+### 1. Instalace Pythonu
+Stáhni Python z [python.org](https://www.python.org/downloads/) a při instalaci zaškrtni **Add Python to PATH**.
+> Ve škole je Python nainstalovaný jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 2. Instalace VS Code a Gitu
+Stáhni a nainstaluj VS Code z [code.visualstudio.com](https://code.visualstudio.com/) a Git z [git-scm.com](https://git-scm.com/).
+> Ve škole je vše nainstalováno jako portable – viz [Návod 4](#návod-4--jak-je-to-u-nás-na-škole).
+
+### 3. Instalace rozšíření Python
+`Ctrl + Shift + X` → nainstaluj rozšíření 
+* **Python** (`ms-python.python`) od Microsoftu 
+* **Jupyter** (`ms-toolsai.jupyter`) pro práci s notebooky (.ipynb).
+
+### 4. Nastavení Git identity
+```bash
+git config --global user.email "tvuj@email.cz"
+```
+```bash
+git config --global user.name "TvujNick"
+```
+```bash
+git config --global credential.helper store
+```
+
+> **Proč:** Na rozdíl od Návodu 1 tu kód neexistuje jen lokálně, ale je uložený i na GitHubu – Git identita říká, kdo jednotlivé změny (commity) udělal.
+
+### 5. Otevření složky projektu
+**File → Open Folder…** (`Ctrl + K, Ctrl + O`) → vyber naklonovanou složku.
+
+### 6. Vytvoření a naklonování Git repozitáře
+Založ repozitář na GitHubu (viz obrázek) a naklonuj ho:
+
+![Pridani_repozitare](github_create.png)
+
+```bash
+git clone https://github.com/uzivatel/nazev-repozitare.git
+```
+
+> **Proč:** Repozitář na GitHubu slouží jako zálohovaná a sdílená kopie projektu – kdokoliv si ho může naklonovat a pokračovat na stejném kódu. V Návodu 1 kód existuje jen jako soubor na disku.
+
+### 7. Povolení spouštění skriptů (jen Windows, pokud hlásí chybu krok 9 , kde je nutné administrátorské oprávnění)
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
 ### 8. Vytvoření virtuálního prostředí (venv)
-
-Otevři terminál (`ctrl + ;`) -> **PowerShell**
-
-```powershell
-& "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
-```
-
-**DOMA** Otevři terminál (`ctrl + ;`) -> **PowerShell**
+Virtuální prostředí izoluje balíčky projektu od zbytku systému:
 
 ```powershell
 python -m venv venv
 ```
 
+> **Proč:** V Návodu 1 se balíček nainstaluje přímo do systémového Pythonu – to stačí pro jeden skript, ale u více projektů najednou by se různé verze balíčků mohly navzájem přepisovat a rozbíjet. Venv dá každému projektu vlastní, oddělené prostředí.
+
 ### 9. Aktivace virtuálního prostředí
-
-Otevři terminál (`ctrl + ;`) -> **PowerShell**
-
 ```powershell
 .\venv\Scripts\activate
 ```
 
-### 10. Instalace balíčků (pip install)
-
-Po aktivaci virtuálního prostředí můžeš instalovat Python balíčky pomocí `pip`:
-
-Otevři terminál (`ctrl + ;`) -> **PowerShell**
-```powershell
-pip install "nazev-balicku"
-```
-
-Příklady:
-
+### 10. Instalace balíčků do venv
 ```powershell
 pip install flask
 pip install pandas matplotlib
-pip install pygame
 ```
 
-Pokud projekt obsahuje soubor `requirements.txt` (např. po naklonování z GitHubu), nainstaluj všechny balíčky najednou:
+Pokud projekt obsahuje `requirements.txt` (např. po naklonování z GitHubu):
 
 ```powershell
 pip install -r requirements.txt
 ```
 
----
-
 ### 11. Uložení závislostí (pip freeze)
-Otevři terminál (`ctrl + ;`) -> **PowerShell**
-Příkaz `pip freeze` vypíše **všechny nainstalované balíčky** ve tvém virtuálním prostředí i s jejich verzemi:
-
-```powershell
-pip freeze
-```
-
-Výstup vypadá například takto:
-
-```
-flask==3.1.0
-Jinja2==3.1.6
-pandas==2.2.3
-```
-
-#### Uložení do souboru requirements.txt
-
-Aby si spolužáci nebo učitel mohli tvůj projekt spustit, ulož seznam balíčků do souboru:
-
 ```powershell
 pip freeze > requirements.txt
 ```
 
-Tento soubor pak **commitni do Gitu** spolu s projektem. Kdokoliv si pak nainstaluje stejné balíčky příkazem:
+Tento soubor **commitni do Gitu** spolu s projektem – kdokoliv pak nainstaluje stejné balíčky příkazem `pip install -r requirements.txt`.
 
-```powershell
-pip install -r requirements.txt
-```
+> 💡 Vždy po instalaci nového balíčku aktualizuj `requirements.txt` příkazem výše.
 
-> 💡 **Doporučení:** Vždy po instalaci nového balíčku aktualizuj `requirements.txt` příkazem `pip freeze > requirements.txt`.
+> **Proč:** V Návodu 1 balíčky nikdo jiný řešit nemusí, protože je tam většinou jen jeden skript bez závislostí. U reálného projektu ale potřebuješ, aby si kdokoliv jiný (nebo ty sám na jiném PC) nainstaloval přesně stejné balíčky – bez `requirements.txt` by musel zjišťovat, co všechno je potřeba, ručně.
+
+### Další dobré zvyky
+- Nikdy necommituj složku `venv/` ani jiné velké/generované soubory – k tomu slouží `.gitignore`.
+- Piš srozumitelné commit zprávy (co a proč se změnilo, ne jen "oprava").
+- Commituj často a po menších funkčních celcích, ne jednu obří změnu na konci.
+- Před začátkem práce si stáhni nejnovější změny (`git pull`), ať nepřepisuješ práci ostatních.
 
 ---
 
-### Shrnutí pořadí kroků
+## Návod 5 – Jak je to u nás na škole (Skript SETUP)
 
-#### Část A – Jednorázové nastavení
+## 1. Zprovoznění VS CODE pro okamžitou práci
 
-| # | Co udělat | Kde |
-|---|-----------|-----|
-| 1 | Nastavit `settings.json` | VS Code – User Settings (JSON) |
-| 2 | Nastavit Git identitu | Git Bash Portable terminál |
-| 3 | Nainstalovat rozšíření Python + Jupyter | VS Code – Extensions |
+### 1.1. Spuštění skriptu SETUP
+Otevřete složku `Aplikace SPŠ a VOŠ` na ploše a spusťte skript `Visual Studio Code SETUP`. Počkejte, až se Vám načte Visual Studio Code (cca 5min). Toto je vše, co je potřeba udělat, aby VS Code, Python a Git fungovaly na školním serveru. Po tomto kroku je prostředí připraveno pro 
+okamžitou práci.
 
-#### Část B – Pro každý nový projekt (i po restartu PC)
+> ⚠️ Pokud náhodou chybí složka `Aplikace SPŠ a VOŠ` na ploše, lze jí najít na cestě `G:\links\spsnet`.
 
-| # | Co udělat | Kde |
-|---|-----------|-----|
-| 4 | Vytvořit a otevřít složku projektu | VS Code – File → Open Folder |
-| 5 | Vytvoření Git repozitář | Stránky Githubu |
-| 6 | Naklonovat Git repozitář | Terminál nebo VS Code – Git: Clone |
-| 7 | Povolit spouštění skriptů | PowerShell terminál |
-| 8 | Vytvořit venv | PowerShell terminál |
-| 9 | Aktivovat venv | PowerShell terminál |
-| 10 | Nainstalovat balíčky (`pip install`) | PowerShell terminál (s aktivním venv) |
-| 11 | Uložit závislosti (`pip freeze`) | PowerShell terminál (s aktivním venv) |
+Následující kroky jsou doporučené pro práci s Gitem a instalaci balíčků knihoven.
+
+
+## 2. Zprovoznění GIT 
+
+### 2.1. Nastavení Git identity
+Otevři terminál (`ctrl + ;`) případně nabídka nahoře (`Terminal -> New Terminal`)  → **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu – vedle pluska malý zobáček dolů):
+
+![Pridani_repozitare](zmena_terminalu.png)
+
+```bash
+git config --global user.email "tvuj@email.cz"
+```
+```bash
+git config --global user.name "TvujNick"
+```
+```bash
+git config --global credential.helper store
+```
+
+> Pokud při prvním pushnutí (Commit/Sync) git hlásí chybu `user.name a user.email`, Zkuste příkazy opět zadat případně spusť tyto tři příkazy přímo v (`G:\win32app\git_portable\bin\bash.exe`) resp. (`aplikace SPŠ a VOŠ/git_portable_bash`).
+
+### 2.2. Otevření složky projektu
+**File → Open Folder…** (`Ctrl + K, Ctrl + O`) → vyber složku projektu, kam budeš ukládat svůj kód.
+
+> **Doporučuji vytvoření složky na disku D: např. D:\programovani_prijmeni**
+
+### 2.3. Vytvoření a naklonování Git repozitáře
+> ⚠️ Založení repozitáře přeskočte, pokud již repozitář na GitHubu máte. V takovém případě stačí naklonovat repozitář z GitHubu.
+
+Založ repozitář na GitHubu (vpravo nahoře ikonka profilu → `Repositories` → `New`, doporučuji zaškrtnout `README.md` a `.gitignore` pro Python projekty) a naklonuj ho:
+
+![Pridani_repozitare](github_create.png)
+
+V terminálu **Git Bash Portable** ho naklonuj (odkaz najdeš na stránce repozitáře pod zeleným tlačítkem `Code` → `HTTPS`):
+
+```bash
+git clone https://github.com/uzivatel/nazev-repozitare.git
+```
+Případně přes VS Code:
+
+Otevři příkazovou paletu (Ctrl + Shift + P)
+Zadej "Git: Clone"
+Vlož URL repozitáře a vyber cílovou složku z kroku 2.2.
+
+Případně přes VS Code a propopjení s GIT:
+
+Otevři příkazovou paletu (Ctrl + Shift + P)
+Zadej "Git: Clone"
+Klikni na "Clone from GitHub"
+Přihlaš se do GitHubu a vyber repozitář, který chceš naklonovat. Vyber cílovou složku z kroku 2.2.
+
+
+
+## 3. Zprovoznění Vitruálního prostředí (venv)
+### 3.1. Povolení spouštění skriptů
+Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 8.**
+
+Otevři terminál (`ctrl + ;`) -> **PowerShell** případně jen tlačítko `+`:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+### 3.2. Vytvoření virtuálního prostředí (venv)
+Použij cestu k portable Pythonu na serveru:
+
+```powershell
+& "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
+```
+
+### 3.3. Aktivace virtuálního prostředí
+```powershell
+.\venv\Scripts\activate
+```
+
+### 3.4. Instalace balíčků a uložení requirements.txt
+```powershell
+pip install nazev-balicku
+pip freeze > requirements.txt
+```
+## Návod 5 – Jak je to u nás na škole + Best Practices
+
+Ve škole je Python, Git i VS Code nainstalováno jako **portable verze na serveru**. Tenhle návod obsahuje kompletní postup se školními specifiky (od nastavení VS Code až po venv).
+
+### 1. První spuštění
+Ve složce `Aplikace SPŠ a VOŠ` otevřete `Visual Studio Code SETUP` a počkejte až se Vám načte Visual Studio Code. (cca 5min)
+
+> ⚠️ Pokud už v souboru nějaké nastavení máš, přidej pouze jednotlivé položky – neduplikuj vnější složené závorky `{}`.
+
+Po uložení (`ctrl + s`) a zavření souboru `settings.json` vypněte a zapněte VS Code, případně (`Ctrl + Shift + P`) a `Reload Window`.
+
+### 2. Instalace rozšíření Python
+V levém panelu klikni na ikonu **Extensions** (`Ctrl + Shift + X`) a nainstaluj rozšíření 
+* **Python** (`ms-python.python`) od Microsoftu 
+* **Jupyter** (`ms-toolsai.jupyter`) pro práci s notebooky (.ipynb).
+
+### 3. Nastavení Git identity
+Otevři terminál (`ctrl + ;`) → **Git Bash Portable** (v dolní liště VS Code vyber profil terminálu – vedle pluska malý zobáček dolů):
+
+![Pridani_repozitare](zmena_terminalu.png)
+
+```bash
+git config --global user.email "tvuj@email.cz"
+```
+```bash
+git config --global user.name "TvujNick"
+```
+```bash
+git config --global credential.helper store
+```
+
+> Pokud při prvním pushnutí (Commit/Sync) git hlásí chybu `user.name a user.email`, spusť tyto tři příkazy přímo v (`G:\win32app\git_portable\bin\bash.exe`) resp. (`aplikace SPŠ a VOŠ/git_portable_bash`).
+
+### 4. Otevření složky projektu
+**File → Open Folder…** (`Ctrl + K, Ctrl + O`) → vyber složku projektu, kam budeš ukládat svůj kód.
+
+> **Doporučuji vytvoření složky na disku D: např. D:\programovani_prijemni**
+
+### 5. Vytvoření a naklonování Git repozitáře
+Založ repozitář na GitHubu (vpravo nahoře ikonka profilu → `Repositories` → `New`, doporučuji zaškrtnout `README.md` a `.gitignore` pro Python projekty) a naklonuj ho:
+
+![Pridani_repozitare](github_create.png)
+
+V terminálu **Git Bash Portable** ho naklonuj (odkaz najdeš na stránce repozitáře pod zeleným tlačítkem `Code` → `HTTPS`):
+
+```bash
+git clone https://github.com/uzivatel/nazev-repozitare.git
+```
+Případně přes VS Code:
+
+Otevři příkazovou paletu (Ctrl + Shift + P)
+Zadej "Git: Clone"
+Vlož URL repozitáře a vyber cílovou složku z kroku 4.
+
+### 6. Povolení spouštění skriptů
+Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 8.**
+
+Otevři terminál (`ctrl + ;`) -> **PowerShell** případně jen tlačítko `+`:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+### 7. Vytvoření virtuálního prostředí (venv)
+Použij cestu k portable Pythonu na serveru:
+
+```powershell
+& "G:/win32app/Portable Python-3.13.3 x64/python.exe" -m venv venv
+```
+
+### 8. Aktivace virtuálního prostředí
+```powershell
+.\venv\Scripts\activate
+```
+
+### 9. Instalace balíčků a uložení requirements.txt
+```powershell
+pip install nazev-balicku
+pip freeze > requirements.txt
+```
+

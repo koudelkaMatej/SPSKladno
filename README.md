@@ -2,12 +2,13 @@
 
 ## Nastavení VS Code, Pythonu a Gitu
 
-Níže najdeš **4 samostatné návody**. Každý je kompletní sám o sobě – vyber si ten, který potřebuješ, a projdi ho od začátku do konce (nemusíš procházet ostatní návody).
+Níže najdeš **5 samostatných návodů**. Každý je kompletní sám o sobě – vyber si ten, který potřebuješ, a projdi ho od začátku do konce (nemusíš procházet ostatní návody).
 
 - [Návod 1 – Nutné minimum, aby šel Python](#návod-1--nutné-minimum-aby-šel-python)
 - [Návod 2 – Nutné minimum, aby šel Python + Git](#návod-2--nutné-minimum-aby-šel-python--git)
 - [Návod 3 – Doporučené (jak se to dělá v reálném vývoji)](#návod-3--doporučené-jak-se-to-dělá-v-reálném-vývoji)
 - [Návod 4 – Jak je to u nás na škole](#návod-4--jak-je-to-u-nás-na-škole)
+- [Návod 5 – Jak je to u nás na škole + Best Practices](#návod-5--jak-je-to-u-nás-na-škole--best-practices)
 
 Doma je potřeba nainstalovat Python (v instalaci zaškrtnout **Add Python to PATH**), VS Code a případně Git (stačí výchozí nastavení instalace). Ve škole je vše nainstalováno jako **portable verze na serveru** – přesný postup najdeš v [Návodu 4](#návod-4--jak-je-to-u-nás-na-škole).
 
@@ -207,7 +208,7 @@ Tento soubor **commitni do Gitu** spolu s projektem – kdokoliv pak nainstaluje
 
 ---
 
-## Návod 5 – Jak je to u nás na škole (Skript SETUP)
+## Návod 4 – Jak je to u nás na škole
 
 ## 1. Zprovoznění VS CODE pro okamžitou práci
 
@@ -273,7 +274,7 @@ Přihlaš se do GitHubu a vyber repozitář, který chceš naklonovat. Vyber cí
 
 ## 3. Zprovoznění Vitruálního prostředí (venv)
 ### 3.1. Povolení spouštění skriptů
-Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 8.**
+Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 3.4.**
 
 Otevři terminál (`ctrl + ;`) -> **PowerShell** případně jen tlačítko `+`:
 
@@ -353,7 +354,7 @@ Zadej "Git: Clone"
 Vlož URL repozitáře a vyber cílovou složku z kroku 4.
 
 ### 6. Povolení spouštění skriptů
-Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 8.**
+Školní politika resetuje toto nastavení po každém restartu PC. **tento příkaz musíš spustit pokaždé když budeš chtít měnit a instalovat balíčky/knihovny v virtuálním prostředí (venv) v kroku 9.**
 
 Otevři terminál (`ctrl + ;`) -> **PowerShell** případně jen tlačítko `+`:
 

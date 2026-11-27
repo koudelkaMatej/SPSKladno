@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrace – Card Battle RPG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">Domů</a>
+    <a href="zebricek.html">Žebříček</a>
+    <a href="login.html">Přihlášení</a>
+    <a href="registrace.html">Registrace</a>
+  </nav>
+  <main>
+    <h1>Registrace</h1>
+    <!-- Backend přijde ve fázi 2 -->
+    <form method="post" action="#">
+      <input type="text" name="jmeno" placeholder="Uživatelské jméno" required>
+      <input type="password" name="heslo" placeholder="Heslo" required minlength="6">
+      <input type="password" name="heslo2" placeholder="Heslo znovu" required minlength="6">
+      <button type="submit">Vytvořit účet</button>
+    </form>
+  </main>
+  <footer>&copy; 2026 Card Battle RPG</footer>
+</body>
+</html>
